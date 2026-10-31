@@ -76,6 +76,13 @@ footer{border-top:1px solid var(--line);padding:24px 16px;color:var(--muted);fon
 .kbtn.bad{background:#e66;color:#fff}
 .kexp{background:#fff7d6;border-radius:16px;padding:12px 16px;margin-top:10px;display:none}
 .kexp.show{display:block}
+.rd .w{display:inline-block;padding:0 3px;border-radius:8px;cursor:pointer;transition:background .15s,transform .15s}
+.rd .w:hover{background:#fff0b3}
+.rd .w.on{background:#ffd54a;transform:scale(1.12)}
+.rd .l{display:inline-block;transition:transform .15s,color .15s}
+.rd .l.on{color:#d9382b;transform:scale(1.7)}
+.rbtn{display:block;margin:6px 0}
+#kVoiceNote{display:none;background:#fde2e2;border-radius:12px;padding:8px 12px;margin:8px 0;font-size:1rem}
 .pop{font-weight:800;color:#1f7a5a;min-height:1.6em}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
@@ -216,10 +223,10 @@ $4,757 במזומן לסוכנות בווייטנאם. כבודה בטיסות �
 </footer>
 
 <div id="kids" role="dialog" aria-label="מצב ילדים" aria-modal="true">
-<div class="top"><button class="kbtn alt" id="kidsClose" type="button">חֲזָרָה לָאֲתָר</button><div class="score">⭐ <span id="kScore">0</span> מִתּוֹךְ <span id="kMax">0</span></div></div>
+<div class="top"><button class="kbtn alt" id="kidsClose" type="button">חֲזָרָה לָאֲתָר</button><div class="ctl"><label for="kRate">🐢 מְהִירוּת:</label> <select id="kRate"><option value="0.45">אִטִּי מְאֹד</option><option value="0.6" selected>אִטִּי</option><option value="0.85">רָגִיל</option></select> <button class="kbtn" id="kStop" type="button">⏹ עֲצֹר</button></div><div class="score">⭐ <span id="kScore">0</span> מִתּוֹךְ <span id="kMax">0</span></div></div>
 <div class="wrap">
 <h2>הַרְפַּתְקָה בְּוִיֶיטְנָאם 🇻🇳</h2>
-<p>קִרְאוּ עַל כָּל תַּחֲנָה וַעֲנוּ עַל שְׁאֵלָה. עַל כָּל תְּשׁוּבָה נְכוֹנָה מְקַבְּלִים 10 נְקֻדּוֹת. בְּכָל תַּחֲנָה יֵשׁ כַּפְתּוֹר הֶסְבֵּר מְיֻחָד לְיֶלֶד בֶּן 7, וְכַפְתּוֹר לְמִי שֶׁרוֹצֶה לִלְמֹד לְעֹמֶק (גִּיל 12) עִם שְׁאֵלַת אֶתְגָּר.</p>
+<p>קִרְאוּ עַל כָּל תַּחֲנָה וַעֲנוּ עַל שְׁאֵלָה. עַל כָּל תְּשׁוּבָה נְכוֹנָה מְקַבְּלִים 10 נְקֻדּוֹת. בְּכָל תַּחֲנָה יֵשׁ כַּפְתּוֹר הֶסְבֵּר מְיֻחָד לְיֶלֶד בֶּן 7, וְכַפְתּוֹר לְמִי שֶׁרוֹצֶה לִלְמֹד לְעֹמֶק (גִּיל 12) עִם שְׁאֵלַת אֶתְגָּר. לַחֲצוּ עַל 🔊 כְּדֵי לִשְׁמֹעַ הַקְרָאָה אִטִּית, וְעַל מִלָּה כְּדֵי לִשְׁמֹעַ אוֹתָהּ אוֹת אַחַר אוֹת!</p><div id="kVoiceNote"></div>
 <div id="kCards"></div>
 <div class="kcard" id="kFinal" style="display:none"></div>
 <button class="kbtn" id="kReset" type="button">לְהַתְחִיל מֵחָדָשׁ</button>
@@ -402,18 +409,97 @@ function kQuiz(box, key, q, opts, correct, good){
   });
   if(kState[key]===true) pop.textContent=good;
 }
+/* ---- read-aloud: slow TTS with word + letter highlighting ---- */
+const synth=window.speechSynthesis;
+let kTok=0, kVoice=null;
+const MARK=/[\u0591-\u05C7]/;
+function pickVoice(){
+  if(!synth) return null;
+  const vs=synth.getVoices();
+  kVoice=vs.find(v=>/^he/i.test(v.lang))||vs.find(v=>/hebrew|עברית/i.test(v.name))||null;
+  return kVoice;
+}
+if(synth) synth.onvoiceschanged=pickVoice;
+function kRate(){return parseFloat(document.getElementById('kRate').value)||0.6;}
+function speakP(text,rate,onb){
+  return new Promise(res=>{
+    const u=new SpeechSynthesisUtterance(text); u.lang='he-IL'; if(kVoice||pickVoice()) u.voice=kVoice;
+    u.rate=rate; u.pitch=1.15; u.onend=res; u.onerror=res; if(onb) u.onboundary=onb;
+    synth.speak(u);
+  });
+}
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+function kStopAll(){
+  kTok++; if(synth) synth.cancel();
+  document.querySelectorAll('#kids .on').forEach(e=>e.classList.remove('on'));
+}
+function kPrep(card){
+  card.querySelectorAll('.rd').forEach(el=>{
+    const text=el.textContent; el.textContent='';
+    const btn=document.createElement('button'); btn.type='button'; btn.className='kbtn rbtn'; btn.textContent='🔊 הַקְרָאָה';
+    const box=document.createElement('span'); box.className='rdt';
+    const words=[]; let pos=0;
+    text.split(/(\s+)/).forEach(tok=>{
+      if(!tok){return;}
+      if(/^\s+$/.test(tok)){box.appendChild(document.createTextNode(tok)); pos+=tok.length; return;}
+      const w=document.createElement('span'); w.className='w'; w.title='לחצו כדי לשמוע אות אחרי אות';
+      const letters=[];
+      for(const ch of tok){
+        if(MARK.test(ch) && letters.length){ letters[letters.length-1].textContent+=ch; continue; }
+        const l=document.createElement('span'); l.className='l'; l.textContent=ch; letters.push(l);
+      }
+      letters.forEach(l=>w.appendChild(l));
+      w._text=tok; w._letters=letters;
+      box.appendChild(w); words.push({start:pos,w}); pos+=tok.length;
+    });
+    el.appendChild(btn); el.appendChild(box);
+    btn.onclick=()=>readBlock(text,words);
+    words.forEach(o=>o.w.onclick=()=>spellWord(o.w));
+  });
+}
+async function readBlock(text,words){
+  if(!synth){ kNote('הַדַּפְדְּפָן הַזֶּה לֹא תּוֹמֵךְ בְּהַקְרָאָה.'); return; }
+  kStopAll(); const my=kTok; let seen=false, cur=null;
+  const mark=i=>{ if(cur) cur.classList.remove('on'); cur=words[i]?words[i].w:null; if(cur) cur.classList.add('on'); };
+  const rate=kRate();
+  if(!pickVoice()) kNote('לֹא נִמְצָא קוֹל בְּעִבְרִית בַּמַּכְשִׁיר הַזֶּה, אָז הַהַקְרָאָה אוּלַי לֹא תִּשְׁמַע טוֹב.');
+  else kNote('');
+  const fb=setTimeout(async()=>{ // no word events from this voice: highlight by estimated timing
+    if(seen||my!==kTok) return;
+    for(let i=0;i<words.length&&my===kTok;i++){ mark(i); await sleep((300+110*words[i].w._text.length)*(0.6/rate)); }
+  },1200);
+  await speakP(text,rate,e=>{
+    if(my!==kTok) return; if(e.name&&e.name!=='word') return; seen=true;
+    let idx=0; words.forEach((o,i)=>{ if(o.start<=e.charIndex) idx=i; }); mark(idx);
+  });
+  clearTimeout(fb);
+  if(my===kTok){ mark(-1); }
+}
+async function spellWord(w){
+  if(!synth) return; kStopAll(); const my=kTok; w.classList.add('on');
+  for(const l of w._letters){
+    if(my!==kTok) return;
+    if(!/[\u05D0-\u05EA]/.test(l.textContent)) continue;
+    l.classList.add('on'); await speakP(l.textContent,Math.min(kRate(),0.5)); await sleep(200); l.classList.remove('on');
+  }
+  if(my===kTok){ await speakP(w._text,kRate()); w.classList.remove('on'); }
+}
+function kNote(t){const n=document.getElementById('kVoiceNote'); n.textContent=t; n.style.display=t?'block':'none';}
+document.getElementById('kStop').onclick=kStopAll;
+
 function kBuild(){
   kCards.innerHTML=''; document.getElementById('kMax').textContent=kMax;
   STOPS.forEach(s=>{
     const K=KIDS[s.id];
     const c=document.createElement('div'); c.className='kcard';
-    c.innerHTML='<div class="em">'+s.em+'</div><h3>'+s.n+' <small>('+s.d+')</small></h3><p>'+K.t+'</p>'
+    c.innerHTML='<div class="em">'+s.em+'</div><h3>'+s.n+' <small>('+s.d+')</small></h3><p class="rd">'+K.t+'</p>'
      +'<button class="kbtn alt" data-k="7" type="button">🧒 הֶסְבֵּר לְגִיל 7</button>'
      +'<button class="kbtn" data-k="12" type="button">🔎 לִלְמֹד עוֹד (גִּיל 12)</button>'
-     +'<div class="kexp" data-for="7">'+K.k+'</div>'
-     +'<div class="kexp" data-for="12" dir="rtl" style="font-size:1.1rem">'+K.d+'</div>'
+     +'<div class="kexp rd" data-for="7">'+K.k+'</div>'
+     +'<div class="kexp rd" data-for="12" dir="rtl" style="font-size:1.1rem">'+K.d+'</div>'
      +'<div class="qbox" data-q="b"><p><b>שְׁאֵלָה:</b> '+K.q+'</p><div class="opts"></div><div class="pop" aria-live="polite"></div></div>'
      +'<div class="qbox" data-q="c" style="border-top:2px dashed #0002;margin-top:10px"><p><b>שְׁאֵלַת אֶתְגָּר (גִּיל 12):</b> '+K.cq+'</p><div class="opts"></div><div class="pop" aria-live="polite"></div></div>';
+    kPrep(c);
     c.querySelectorAll('button[data-k]').forEach(btn=>btn.onclick=()=>c.querySelector('.kexp[data-for="'+btn.dataset.k+'"]').classList.toggle('show'));
     kQuiz(c.querySelector('[data-q="b"]'), s.id, K.q, K.o, 0, 'נָכוֹן! +10 נְקֻדּוֹת 🎉');
     kQuiz(c.querySelector('[data-q="c"]'), s.id+'_c', K.cq, K.co, 0, 'מְצֻיָּן! +10 נְקֻדּוֹת 🌟');
@@ -423,7 +509,7 @@ function kBuild(){
 }
 const kidsBtn=document.getElementById('kidsBtn');
 kidsBtn.onclick=()=>{kBuild();kids.classList.add('open');document.body.style.overflow='hidden';kids.scrollTop=0;};
-document.getElementById('kidsClose').onclick=()=>{kids.classList.remove('open');document.body.style.overflow='';};
+document.getElementById('kidsClose').onclick=()=>{kStopAll();kids.classList.remove('open');document.body.style.overflow='';};
 document.getElementById('kReset').onclick=()=>{kState={};SV('vn_kids',kState);kBuild();};
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&kids.classList.contains('open')) document.getElementById('kidsClose').click();});
 
