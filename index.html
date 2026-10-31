@@ -216,13 +216,13 @@ $4,757 במזומן לסוכנות בווייטנאם. כבודה בטיסות �
 </footer>
 
 <div id="kids" role="dialog" aria-label="מצב ילדים" aria-modal="true">
-<div class="top"><button class="kbtn alt" id="kidsClose" type="button">חזרה לאתר</button><div class="score">⭐ <span id="kScore">0</span> / <span id="kMax">0</span></div></div>
+<div class="top"><button class="kbtn alt" id="kidsClose" type="button">חֲזָרָה לָאֲתָר</button><div class="score">⭐ <span id="kScore">0</span> מִתּוֹךְ <span id="kMax">0</span></div></div>
 <div class="wrap">
-<h2>הרפתקה בווייטנאם 🇻🇳</h2>
-<p>קראו על כל תחנה וענו על שאלה. על כל תשובה נכונה מקבלים 10 נקודות. בכל תחנה יש כפתור הסבר מיוחד בשביל ילד בן 7.</p>
+<h2>הַרְפַּתְקָה בְּוִיֶיטְנָאם 🇻🇳</h2>
+<p>קִרְאוּ עַל כָּל תַּחֲנָה וַעֲנוּ עַל שְׁאֵלָה. עַל כָּל תְּשׁוּבָה נְכוֹנָה מְקַבְּלִים 10 נְקֻדּוֹת. בְּכָל תַּחֲנָה יֵשׁ כַּפְתּוֹר הֶסְבֵּר מְיֻחָד לְיֶלֶד בֶּן 7, וְכַפְתּוֹר לְמִי שֶׁרוֹצֶה לִלְמֹד לְעֹמֶק (גִּיל 12) עִם שְׁאֵלַת אֶתְגָּר.</p>
 <div id="kCards"></div>
 <div class="kcard" id="kFinal" style="display:none"></div>
-<button class="kbtn" id="kReset" type="button">להתחיל מחדש</button>
+<button class="kbtn" id="kReset" type="button">לְהַתְחִיל מֵחָדָשׁ</button>
 </div></div>
 
 <script>
@@ -344,39 +344,79 @@ document.getElementById('playRoute').onclick=async()=>{
   playing=false;
 };
 
-/* ---- kids mode ---- */
+/* ---- kids mode: niqqud text, age-7 explanation, age-12 deep dive ---- */
+const KIDS = {
+ hanoi:{
+  t:'הָאָנוֹי הִיא בִּירַת וִיֶיטְנָאם. בָּעִיר הָעַתִּיקָה יֵשׁ רְחוֹבוֹת צָרִים, הַרְבֵּה אוֹפַנּוֹעִים וְאֹכֶל רְחוֹב טָעִים.',
+  k:'הָאָנוֹי הִיא הָעִיר הֲכִי חֲשׁוּבָה בְּוִיֶיטְנָאם, כְּמוֹ שֶׁיְּרוּשָׁלַיִם חֲשׁוּבָה אֶצְלֵנוּ. יֵשׁ בָּהּ הַרְבֵּה אוֹפַנּוֹעִים שֶׁנּוֹסְעִים כָּל הַזְּמַן. כְּשֶׁחוֹצִים כְּבִישׁ הוֹלְכִים לְאַט וּבְשֶׁקֶט, וְהָאוֹפַנּוֹעִים נוֹסְעִים סְבִיבֵנוּ.',
+  q:'מָה הָאָנוֹי בִּשְׁבִיל וִיֶיטְנָאם?', o:['בִּירָה','כְּפָר קָטָן','אִי'],
+  d:'האנוי נוסדה לפני יותר מאלף שנה. בשנת 1010 הוכרזה כבירה בשם ת׳אנג לונג, "הדרקון העולה". בעיר העתיקה כל רחוב נקרא על שם מקצוע או מוצר, כמו רחוב הכסף ורחוב המשי. משקה מקומי מפורסם הוא קפה ביצה, קפה עם קצף של חלמון. למחשבה: למה לדעתך אופנועים הם אמצעי התחבורה העיקרי בערים כאלה?',
+  cq:'באיזו שנה הוכרזה האנוי כבירה לראשונה, בשם ת׳אנג לונג?', co:['1010','1610','1910']},
+ halong:{
+  t:'בְּמִפְרַץ הָא לוֹנְג יֵשׁ אֲלָפִים שֶׁל אִיִּים וְסַלְעֵי גִּיר גְּבוֹהִים שֶׁיּוֹצְאִים מִן הַמַּיִם. יְשֵׁנִים לַיְלָה עַל סְפִינָה גְּדוֹלָה.',
+  k:'בַּמִּפְרָץ יֵשׁ הַרְבֵּה סְלָעִים גְּדוֹלִים וִירֻקִּים שֶׁיּוֹצְאִים מִן הַיָּם, כְּמוֹ הָרִים בְּתוֹךְ הַמַּיִם. נִישַׁן עַל סְפִינָה גְּדוֹלָה, כְּמוֹ בֵּית מָלוֹן שֶׁצָּף עַל הַמַּיִם!',
+  q:'אֵיפֹה יְשֵׁנִים בְּהָא לוֹנְג?', o:['עַל סְפִינָה','בְּאֹהֶל','בְּמָטוֹס'],
+  d:'השם הא לונג פירושו "הדרקון היורד". לפי האגדה, דרקונים ירקו תכשיטים שהפכו לאיים כדי להגן על המדינה מפולשים. המפרץ הוא אתר מורשת עולמית של אונסק"ו. הסלעים נוצרו מאבן גיר שנשחקה במשך מיליוני שנים. למחשבה: איך מים יכולים לעצב סלעים?',
+  cq:'מה פירוש השם הא לונג?', co:['הדרקון היורד','הים הכחול','האי הגדול']},
+ ninh:{
+  t:'בְּנִין בִּין יֵשׁ הָרִים יְרֻקִּים וּשְׂדוֹת אוֹרֶז. מְטַיְּלִים בְּאוֹפַנַּיִם, וּבְטָאם קוֹק שָׁטִים בְּסִירָה.',
+  k:'בְּנִין בִּין יֵשׁ הָרִים יְרֻקִּים וּשְׂדוֹת עִם מַיִם שֶׁגָּדֵל בָּהֶם אוֹרֶז. מְטַיְּלִים בְּאוֹפַנַּיִם וּבְסִירָה קְטַנָּה בֵּין הֶהָרִים. "טָאם קוֹק" פֵּרוּשׁוֹ "שָׁלוֹשׁ מְעָרוֹת", כִּי הַסִּירָה עוֹבֶרֶת בְּתוֹךְ מְעָרוֹת!',
+  q:'בְּמָה מְטַיְּלִים בְּנִין בִּין?', o:['בְּאוֹפַנַּיִם וּבְסִירָה','בְּצוֹלֶלֶת','בְּרַכֶּבֶת הָרִים'],
+  d:'נין בין מכונה "הא לונג היבשתית" בגלל סלעי הגיר הגבוהים שעולים מתוך שדות האורז. טאם קוק פירושו "שלוש מערות", והשייט עובר בנהר נגו דונג דרך שלוש מערות. אורז גדל בשדות מוצפים מים, שנקראים שדות פדי. למחשבה: למה אורז גדל דווקא בשדות מוצפים?',
+  cq:'איך נקראים שדות אורז מוצפים?', co:['פדי','פיורד','סוואנה']},
+ phuquoc:{
+  t:'פּוּקוֹק הוּא הָאִי הַגָּדוֹל בְּיוֹתֵר שֶׁל וִיֶיטְנָאם. נִהְיֶה שָׁם שִׁבְעָה לֵילוֹת בְּמָלוֹן אֶחָד וְנֵהָנֶה מֵחוֹפִים וּמִשֶּׁמֶשׁ.',
+  k:'פּוּקוֹק הוּא אִי, כְּלוֹמַר חֲתִיכַת אֲדָמָה שֶׁהַיָּם מַקִּיף אוֹתָהּ מִכָּל הַצְּדָדִים. נָטוּס אֵלָיו בְּמָטוֹס. נִהְיֶה שָׁם שִׁבְעָה לֵילוֹת, נְשַׂחֵק בַּחוֹל וּבַמַּיִם, וְלֹא נַחֲלִיף מָלוֹן כָּל יוֹם.',
+  q:'מָה זֶה אִי?', o:['אֲדָמָה שֶׁמֻּקֶּפֶת מַיִם','הַר גָּבוֹהַּ','עִיר גְּדוֹלָה'],
+  d:'פו קווק הוא האי הגדול ביותר של וייטנאם והוא נמצא במפרץ תאילנד, קרוב לקמבודיה יותר מאשר ליבשת וייטנאם. האי מפורסם ברוטב דגים ובפלפל. למחשבה: למה לדעתך שבעה לילות במקום אחד הם דרך טובה לנוח אחרי כמה ימי טיול?',
+  cq:'באיזה מפרץ נמצא פוקוק?', co:['מפרץ תאילנד','מפרץ אילת','מפרץ טונקין']},
+ home:{
+  t:'זֶה הַלַּיְלָה הָאַחֲרוֹן בַּטִּיּוּל. יְשֵׁנִים בְּהָאָנוֹי, וְלַמָּחֳרָת עוֹלִים לַמָּטוֹס וְחוֹזְרִים הַבַּיְתָה.',
+  k:'זֶה הַלַּיְלָה הָאַחֲרוֹן. נִישַׁן בְּמָלוֹן, וּבַבֹּקֶר נַעֲלֶה לַמָּטוֹס וְנַחֲזֹר הַבַּיְתָה לְיִשְׂרָאֵל עִם הַרְבֵּה סִפּוּרִים.',
+  q:'לְאָן חוֹזְרִים בְּסוֹף הַטִּיּוּל?', o:['לְיִשְׂרָאֵל','לְפּוּקוֹק','לְהָא לוֹנְג'],
+  d:'וייטנאם היא מדינה ארוכה וצרה, ועל המפה היא דומה לאות S. הצפון (האנוי, הא לונג, נין בין) והדרום (פוקוק) רחוקים זה מזה, ולכן יש בטיול טיסת פנים. למחשבה: השוו את מזג האוויר בהאנוי ובפוקוק בחודש נובמבר.',
+  cq:'לאיזו אות דומה צורת וייטנאם על המפה?', co:['S','O','L']}
+};
 const kids=document.getElementById('kids'), kCards=document.getElementById('kCards');
 let kState=LS('vn_kids')||{};
-const kMax=STOPS.length*10;
+const kMax=STOPS.length*20;
 function kScore(){return Object.values(kState).filter(v=>v===true).length*10;}
 function kRefresh(){
   document.getElementById('kScore').textContent=kScore();
   const f=document.getElementById('kFinal');
-  const done=Object.values(kState).filter(v=>v===true).length===STOPS.length;
+  const done=STOPS.every(s=>kState[s.id]===true);
   f.style.display=done?'block':'none';
-  if(done) f.innerHTML='<div class="em" style="font-size:3.5rem">🏆</div><h3>כל הכבוד! קיבלתם '+kMax+' נקודות!</h3><p>אתם מוכנים לטיול.</p>';
+  if(done) f.innerHTML='<div class="em" style="font-size:3.5rem">🏆</div><h3>כֹּל הַכָּבוֹד! סִיַּמְתֶּם אֶת כָּל הַתַּחֲנוֹת!</h3><p>אֶפְשָׁר לְהַמְשִׁיךְ לְשַׁאֲלוֹת הָאֶתְגָּר לְגִיל 12 וּלְהַגִּיעַ ל־'+kMax+' נְקֻדּוֹת.</p>';
+}
+function kQuiz(box, key, q, opts, correct, good){
+  const pop=box.querySelector('.pop'), area=box.querySelector('.opts');
+  opts.map((t,k)=>[t,k]).sort(()=>Math.random()-.5).forEach(([t,k])=>{
+    const b=document.createElement('button'); b.type='button'; b.className='kbtn opt'; b.textContent=t;
+    if(kState[key]===true && k===correct) b.classList.add('good');
+    b.onclick=()=>{
+      if(kState[key]===true) return;
+      if(k===correct){ kState[key]=true; b.classList.add('good'); pop.textContent=good; SV('vn_kids',kState); kRefresh(); }
+      else { b.classList.add('bad'); pop.textContent='כִּמְעַט! נַסּוּ שׁוּב 🙂'; }
+    };
+    area.appendChild(b);
+  });
+  if(kState[key]===true) pop.textContent=good;
 }
 function kBuild(){
   kCards.innerHTML=''; document.getElementById('kMax').textContent=kMax;
   STOPS.forEach(s=>{
+    const K=KIDS[s.id];
     const c=document.createElement('div'); c.className='kcard';
-    c.innerHTML='<div class="em">'+s.em+'</div><h3>'+s.n+' <small>('+s.d+')</small></h3><p>'+s.txt+'</p>'
-     +'<button class="kbtn alt" type="button">🧒 הסבר לגיל 7</button><div class="kexp">'+s.kid+'</div>'
-     +'<p><b>שאלה:</b> '+s.q+'</p><div class="opts"></div><div class="pop" aria-live="polite"></div>';
-    const exp=c.querySelector('.kexp');
-    c.querySelector('.kbtn.alt').onclick=()=>exp.classList.toggle('show');
-    const pop=c.querySelector('.pop'), opts=c.querySelector('.opts');
-    s.o.map((t,k)=>[t,k]).sort(()=>Math.random()-.5).forEach(([t,k])=>{
-      const b=document.createElement('button'); b.type='button'; b.className='kbtn opt'; b.textContent=t;
-      if(kState[s.id]===true && k===s.c) b.classList.add('good');
-      b.onclick=()=>{
-        if(kState[s.id]===true) return;
-        if(k===s.c){ kState[s.id]=true; b.classList.add('good'); pop.textContent='נכון! +10 נקודות 🎉'; SV('vn_kids',kState); kRefresh(); }
-        else { b.classList.add('bad'); pop.textContent='כמעט! נסו שוב 🙂'; }
-      };
-      opts.appendChild(b);
-    });
-    if(kState[s.id]===true) pop.textContent='נכון! +10 נקודות 🎉';
+    c.innerHTML='<div class="em">'+s.em+'</div><h3>'+s.n+' <small>('+s.d+')</small></h3><p>'+K.t+'</p>'
+     +'<button class="kbtn alt" data-k="7" type="button">🧒 הֶסְבֵּר לְגִיל 7</button>'
+     +'<button class="kbtn" data-k="12" type="button">🔎 לִלְמֹד עוֹד (גִּיל 12)</button>'
+     +'<div class="kexp" data-for="7">'+K.k+'</div>'
+     +'<div class="kexp" data-for="12" dir="rtl" style="font-size:1.1rem">'+K.d+'</div>'
+     +'<div class="qbox" data-q="b"><p><b>שְׁאֵלָה:</b> '+K.q+'</p><div class="opts"></div><div class="pop" aria-live="polite"></div></div>'
+     +'<div class="qbox" data-q="c" style="border-top:2px dashed #0002;margin-top:10px"><p><b>שְׁאֵלַת אֶתְגָּר (גִּיל 12):</b> '+K.cq+'</p><div class="opts"></div><div class="pop" aria-live="polite"></div></div>';
+    c.querySelectorAll('button[data-k]').forEach(btn=>btn.onclick=()=>c.querySelector('.kexp[data-for="'+btn.dataset.k+'"]').classList.toggle('show'));
+    kQuiz(c.querySelector('[data-q="b"]'), s.id, K.q, K.o, 0, 'נָכוֹן! +10 נְקֻדּוֹת 🎉');
+    kQuiz(c.querySelector('[data-q="c"]'), s.id+'_c', K.cq, K.co, 0, 'מְצֻיָּן! +10 נְקֻדּוֹת 🌟');
     kCards.appendChild(c);
   });
   kRefresh();
