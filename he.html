@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>משפחת להב בווייטנאם 2026</title>
+<meta name="description" content="תכנון משפחתי משותף לטיול בווייטנאם, 17.11–1.12.2026">
+<style>
+:root{--bg:#f6f3ec;--card:#fff;--ink:#1d2b24;--muted:#5f6d66;--accent:#1f7a5a;--accent2:#d9822b;--line:#e3ded2;--warn:#fff4e0}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121815;--card:#1b2420;--ink:#eef2ef;--muted:#9fb0a7;--accent:#4cc79a;--accent2:#f0a35a;--line:#2b3731;--warn:#2d2517}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",Arial,"Heebo",sans-serif;line-height:1.6}
+a{color:var(--accent)}
+header.nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+header.nav nav{display:flex;gap:4px;overflow-x:auto;padding:8px 16px;max-width:1000px;margin:auto}
+header.nav a{white-space:nowrap;text-decoration:none;color:var(--ink);padding:6px 12px;border-radius:99px;font-size:.95rem}
+header.nav a:hover{background:var(--line)}
+.langswitch{font-weight:700;border:1px solid var(--line)}
+main{max-width:1000px;margin:auto;padding:0 16px 64px}
+section{padding:48px 0 8px}
+.eyebrow{letter-spacing:.15em;font-size:.8rem;color:var(--accent);font-weight:700}
+h1{font-size:clamp(2.2rem,8vw,4rem);line-height:1.1;margin:.3em 0}
+h1 span{color:var(--accent2)}
+h2{font-size:1.8rem;margin:0 0 16px}
+.lead{font-size:1.15rem;color:var(--muted);max-width:620px}
+.btn{display:inline-block;background:var(--accent);color:#fff;padding:10px 20px;border-radius:99px;text-decoration:none;font-weight:600;margin-top:8px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:28px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}
+.stat b{display:block;font-size:2rem;color:var(--accent)}
+.stat small{color:var(--muted)}
+.chapters{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.chapters .n{color:var(--accent2);font-weight:700}
+.chapters h3{margin:.2em 0}
+.notice{background:var(--warn);border:1px solid var(--line);border-radius:16px;padding:16px;margin:16px 0}
+.notice h3{margin:0 0 4px}
+.day{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--line)}
+.day:last-child{border:0}
+.day .d{min-width:84px;font-weight:700;color:var(--accent)}
+.day label{display:flex;gap:10px;cursor:pointer;flex:1}
+.day input{margin-top:6px;width:18px;height:18px;accent-color:var(--accent)}
+.day input:checked+div{opacity:.55;text-decoration:line-through}
+.tag{display:inline-block;font-size:.75rem;padding:1px 8px;border-radius:99px;background:var(--line);color:var(--muted);margin-inline-start:6px}
+table{width:100%;border-collapse:collapse}
+th,td{text-align:start;padding:10px 8px;border-bottom:1px solid var(--line)}
+th{color:var(--muted);font-weight:600;font-size:.9rem}
+input[type=number],input[type=text]{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:6px 8px;width:110px}
+input[type=text]{width:100%}
+.total{font-size:1.4rem;font-weight:700;color:var(--accent)}
+ul.check{list-style:none;padding:0;margin:0}
+ul.check li{padding:8px 0;border-bottom:1px solid var(--line)}
+ul.check label{display:flex;gap:10px;cursor:pointer}
+ul.check input{width:18px;height:18px;accent-color:var(--accent)}
+ul.check input:checked+span{opacity:.55;text-decoration:line-through}
+.q li{margin-bottom:6px}
+footer{border-top:1px solid var(--line);padding:24px 16px;color:var(--muted);font-size:.9rem;max-width:1000px;margin:auto}
+@media(max-width:560px){.day{flex-direction:column;gap:4px}}
+#routeSvg{width:100%;height:auto;display:block;background:linear-gradient(var(--bg),var(--card));border-radius:12px}
+#routeSvg .stop{cursor:pointer}
+#routeSvg .stop circle{fill:var(--card);stroke:var(--accent);stroke-width:4;transition:r .2s}
+#routeSvg .stop:hover circle,#routeSvg .stop.on circle{fill:var(--accent2);r:16}
+#routeSvg text.lbl{fill:var(--ink);font-size:15px;font-weight:700}
+.kidsbtn{border:0;cursor:pointer;background:var(--accent2);color:#fff;font:inherit;font-weight:700;padding:6px 14px;border-radius:99px;white-space:nowrap}
+#kids{position:fixed;inset:0;z-index:20;overflow:auto;background:linear-gradient(#fff3c4,#c9f0e0);color:#1d2b24;font-size:1.25rem;display:none}
+#kids.open{display:block}
+#kids .top{position:sticky;top:0;display:flex;gap:12px;align-items:center;justify-content:space-between;padding:12px 16px;background:#ffffffd9;backdrop-filter:blur(6px)}
+#kids .score{font-size:1.5rem;font-weight:800}
+#kids .wrap{max-width:760px;margin:auto;padding:16px}
+#kids h2{font-size:2rem}
+.kcard{background:#fff;border-radius:24px;padding:20px;margin:16px 0;box-shadow:0 4px 0 #0001}
+.kcard .em{font-size:3.5rem}
+.kcard h3{margin:.2em 0;font-size:1.6rem}
+.kbtn{font:inherit;font-weight:700;border:0;border-radius:99px;padding:10px 18px;margin:4px;cursor:pointer;background:#1f7a5a;color:#fff}
+.kbtn.alt{background:#d9822b}
+.kbtn.opt{background:#eef6f2;color:#1d2b24;border:2px solid #1f7a5a}
+.kbtn.good{background:#2fb86f;color:#fff}
+.kbtn.bad{background:#e66;color:#fff}
+.kexp{background:#fff7d6;border-radius:16px;padding:12px 16px;margin-top:10px;display:none}
+.kexp.show{display:block}
+.rd .w{display:inline-block;padding:0 3px;border-radius:8px;cursor:pointer;transition:background .15s,transform .15s}
+.rd .w:hover{background:#fff0b3}
+.rd .w.on{background:#ffd54a;transform:scale(1.12)}
+.rd .l{display:inline-block;transition:transform .15s,color .15s}
+.rd .l.on{color:#d9382b;transform:scale(1.7)}
+.rbtn{display:block;margin:6px 0}
+#kVoiceNote{display:none;background:#fde2e2;border-radius:12px;padding:8px 12px;margin:8px 0;font-size:1rem}
+.pop{font-weight:800;color:#1f7a5a;min-height:1.6em}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+</head>
+<body>
+<header class="nav"><nav>
+<button id="kidsBtn" class="kidsbtn" type="button">🧒 מצב ילדים</button><a href="#journey">01 המסע</a><a href="#map">מפה</a><a href="#days">02 ימים</a><a href="#stay">03 לינה</a><a href="#budget">04 תקציב</a><a href="#prep">05 הכנות</a><a href="#links">06 קישורים</a><a href="index.html" class="langswitch" onclick="this.href='index.html'+location.hash">English</a>
+</nav></header>
+<main>
+
+<section id="journey">
+<div class="eyebrow">משפחת להב בווייטנאם 2026</div>
+<h1>טבע בצפון.<br><span>נופש בפוקוק.</span></h1>
+<p class="lead">התכנית המעודכנת של קובי, מהנחיתה ועד הטיסה הביתה. כל הימים, הלינות והעלויות במקום אחד.</p>
+<a class="btn" href="#days">לגלות את המסלול ←</a>
+<p style="color:var(--muted);font-size:.9rem">17.11–1.12.2026 • תכנית קובי המעודכנת מ-29.10</p>
+
+<div class="stats">
+<div class="card stat"><b>15</b><small>ימים בווייטנאם</small></div>
+<div class="card stat"><b>14</b><small>לילות, כולל הקרוז</small></div>
+<div class="card stat"><b>2 + 2</b><small>מבוגרים וילדים</small></div>
+<div class="card stat"><b>$4,757</b><small>מחיר החבילה למשפחה, במזומן לסוכנות בווייטנאם</small></div>
+</div>
+
+<h2>המסע שלכם, בחמישה פרקים</h2>
+<div class="chapters">
+<div class="card"><div class="n">01</div><h3>האנוי</h3><div>17–19.11 • 2 לילות</div><small>נחיתה וזמן חופשי</small></div>
+<div class="card"><div class="n">02</div><h3>הא לונג ביי</h3><div>19–20.11 • לילה בקרוז</div><small>Victorious Cruise</small></div>
+<div class="card"><div class="n">03</div><h3>נין בין</h3><div>20–23.11 • 3 לילות</div><small>אופניים, טאם קוק, מואה וסדנת אורז</small></div>
+<div class="card"><div class="n">04</div><h3>פוקוק</h3><div>23–30.11 • 7 לילות</div><small>Lahana • בסיס אחד</small></div>
+<div class="card"><div class="n">05</div><h3>האנוי</h3><div>30.11–1.12 • לילה אחרון</div><small>Sunline וטיסה הביתה</small></div>
+</div>
+<p>הצעת קובי המעודכנת מ-29.10 משקללת את השינוי שאישר רועי ב-24.10: שלושה לילות בנין בין על חשבון לילה בפוקוק. המעבר ב-23.11 בטיסת פנים כלולה, המראה מתוכננת 11:55. אין לילה ביניים בהאנוי ואין פיצול מלונות בצפון ובדרום האי.</p>
+
+<h2>כדאי לדעת לפני שמתכננים</h2>
+<div class="notice"><h3>שינוי בקרוז: Victorious במקום Doris</h3>ההפלגה של Doris אינה יוצאת, והספק שדרג את הקרוז ל-Victorious (עדכון מ-6.11). פרטי החדר וההסעה לוודא מול הספק.</div>
+<div class="notice"><h3>פעילויות באי ובנין בין: רעיונות, לא חלק מהחבילה</h3>
+הפעילויות המוצעות ב-24–29.11 וסדנת האורז ב-22.11 הן עצמאיות ואינן כלולות. כרטיסים ותחבורה צריכים תקציב נפרד. <a href="#budget">למחשבון התוספות ←</a></div>
+<div class="notice"><h3>המחיר וההזמנה: יש מחיר, יש פרטים לסגור</h3>
+$4,757 במזומן לסוכנות בווייטנאם. כבודה בטיסות הפנים לא צוינה, והזמנת Hanoi Pearl העצמאית מול הכללה בחבילה דורשת יישור. <a href="#open">לשאלות שצריך לסגור ←</a></div>
+</section>
+
+<section id="map">
+<div class="eyebrow">ROUTE / INTERACTIVE</div>
+<h2>המסלול על המפה</h2>
+<p class="lead">לחצו על תחנה, או על "צאו לדרך" כדי לראות את המסע מתקדם. המפה מסוגננת ואינה בקנה מידה.</p>
+<div class="card">
+<svg id="routeSvg" viewBox="0 0 600 380" role="img" aria-label="מפה מסוגננת של המסלול">
+<path id="routeLine" d="M300,50 L480,95 L260,175 L200,310" fill="none" stroke="var(--accent)" stroke-width="4" stroke-dasharray="2 10" stroke-linecap="round"/>
+<path d="M200,310 C420,330 470,200 320,64" fill="none" stroke="var(--accent2)" stroke-width="3" stroke-dasharray="6 8" opacity=".7"/>
+<g id="stops"></g>
+<g id="mover" style="transition:transform 1.1s ease-in-out;transform:translate(300px,50px)"><text font-size="30" text-anchor="middle" y="-18">✈️</text></g>
+</svg>
+<div id="stopInfo" class="notice" style="margin-top:12px"><b>בחרו תחנה במפה</b></div>
+<button class="btn" id="playRoute" style="border:0;cursor:pointer">▶ צאו לדרך</button>
+</div>
+
+<h2 style="margin-top:32px">איפה אנחנו, על מפה אמיתית</h2>
+<p class="lead">גררו את הסרגל כדי לבחור יום בטיול ולראות איפה המשפחה נמצאת פיסית באותו יום. אפשר גם ללחוץ על סמן במפה.</p>
+<div class="card">
+<div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+<label for="daySlider" style="font-weight:700">יום בטיול:</label>
+<input type="range" id="daySlider" min="0" max="14" value="0" style="flex:1;min-width:180px;accent-color:var(--accent)">
+<b id="dayLabel"></b>
+</div>
+<div id="dayWhere" style="margin:8px 0;color:var(--muted)"></div>
+<div id="realMap" style="height:400px;border-radius:12px;direction:ltr" aria-label="מפה אמיתית של המסלול"></div>
+<p style="color:var(--muted);font-size:.85rem;margin-bottom:0">מיקומי הסמנים מקורבים לעיר או לאזור, לא לכתובת המלון המדויקת. מפה: OpenStreetMap.</p>
+</div>
+</section>
+
+<section id="days">
+<div class="eyebrow">02 / ימים</div>
+<h2>יום אחר יום</h2>
+<p class="lead">סמנו מה כבר סגור או נבדק. הסימונים נשמרים בדפדפן שלכם בלבד.</p>
+<div class="card" id="dayList"></div>
+</section>
+
+<section id="stay">
+<div class="eyebrow">03 / לינה</div>
+<h2>לינה</h2>
+<div class="card"><table>
+<tr><th>אזור</th><th>תאריכים</th><th>לילות</th><th>מקום</th></tr>
+<tr><td>האנוי</td><td>17–19.11</td><td>2</td><td>Hanoi Pearl (עצמאית או בחבילה, לסגור)</td></tr>
+<tr><td>הא לונג ביי</td><td>19–20.11</td><td>1</td><td>Victorious Cruise (שודרג מ-Doris, פרטים לוודא)</td></tr>
+<tr><td>נין בין</td><td>20–23.11</td><td>3</td><td>לעדכן שם לינה מהצעת קובי</td></tr>
+<tr><td>פוקוק</td><td>23–30.11</td><td>7</td><td>Lahana Resort</td></tr>
+<tr><td>האנוי</td><td>30.11–1.12</td><td>1</td><td>Sunline</td></tr>
+</table>
+<p style="color:var(--muted);font-size:.9rem">תמונות באתר המלון אינן אישור לסוג החדר. שמות הלינה בטבלה לפי התקציר, יש לאמת מול ההצעה המלאה.</p></div>
+</section>
+
+<section id="budget">
+<div class="eyebrow">04 / תקציב</div>
+<h2>תקציב ומחשבון תוספות</h2>
+<div class="card">
+<p>חבילת קובי: <b>$4,757</b> למשפחה, במזומן לסוכנות בווייטנאם. כוללת טיסות פנים, לינות וקרוז.</p>
+<p>תוספות שאינן בחבילה (מלאו מחיר בדולרים, השורות נשמרות בדפדפן):</p>
+<table id="extras">
+<tr><th>פריט</th><th>$</th></tr>
+</table>
+<p><button class="btn" id="addRow" style="border:0;cursor:pointer">+ הוספת שורה</button></p>
+<p>תוספות: <b id="sumExtras">$0</b></p>
+<p class="total">סה"כ משוער: <span id="sumAll">$4,757</span></p>
+</div>
+</section>
+
+<section id="prep">
+<div class="eyebrow">05 / הכנות</div>
+<h2>הכנות</h2>
+<div class="card"><ul class="check" id="prepList"></ul></div>
+<h3 id="open">שאלות שצריך לסגור</h3>
+<div class="card"><ul class="q">
+<li>כבודה בטיסות הפנים: מה מותר ומה העלות?</li>
+<li>Hanoi Pearl: הזמנה עצמאית או הכללה בחבילה?</li>
+<li>שם הלינה בנין בין והאם היא כלולה במחיר.</li>
+<li>אילו פעילויות בפוקוק ובנין בין באמת רוצים, ומה עלותן?</li>
+<li>מועד ואופן תשלום המזומן לסוכנות.</li>
+</ul></div>
+</section>
+
+<section id="links">
+<div class="eyebrow">06 / קישורים</div>
+<h2>קישורים</h2>
+<div class="card"><ul class="check" style="list-style:none">
+<li><a target="_blank" rel="noopener" href="https://www.google.com/search?q=Lahana+Resort+Phu+Quoc">Lahana Resort, פוקוק</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.google.com/search?q=Victorious+Cruise+Ha+Long+Bay">Victorious Cruise, הא לונג</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.google.com/search?q=Hanoi+Pearl+Hotel">Hanoi Pearl, האנוי</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.google.com/search?q=Sunline+Hotel+Hanoi">Sunline, האנוי</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.google.com/search?q=Tam+Coc+Ninh+Binh">טאם קוק, נין בין</a></li>
+</ul></div>
+</section>
+</main>
+
+<footer>
+<p><b>איך נשמרים הסימונים והתקציב?</b> בדפדפן שלכם בלבד (localStorage), בלי שרת. כל מכשיר שומר בנפרד.</p>
+<p>עודכן 29.10.2026: שולבה הצעת קובי המעודכנת, מחיר $4,757 במזומן לסוכנות בווייטנאם, טיסות פנים כלולות, ושמות הלינות והקרוז. השינוי מ-24.10 משוקלל בתכנית. עודכן 6.11.2026: הקרוז שודרג מ-Doris ל-Victorious על ידי הספק. כל מי שמחזיק בקישור יכול לצפות. ללא פרטי דרכון או הזמנה. אין הזמנה, תשלום או שליחת הודעה מהאתר.</p>
+</footer>
+
+<div id="kids" role="dialog" aria-label="מצב ילדים" aria-modal="true">
+<div class="top"><button class="kbtn alt" id="kidsClose" type="button">חֲזָרָה לָאֲתָר</button><div class="ctl"><label for="kRate">🐢 מְהִירוּת:</label> <select id="kRate"><option value="0.45">אִטִּי מְאֹד</option><option value="0.6" selected>אִטִּי</option><option value="0.85">רָגִיל</option></select> <button class="kbtn" id="kStop" type="button">⏹ עֲצֹר</button></div><div class="score">⭐ <span id="kScore">0</span> מִתּוֹךְ <span id="kMax">0</span></div></div>
+<div class="wrap">
+<h2>הַרְפַּתְקָה בְּוִיֶיטְנָאם 🇻🇳</h2>
+<p>קִרְאוּ עַל כָּל תַּחֲנָה וַעֲנוּ עַל שְׁאֵלָה. עַל כָּל תְּשׁוּבָה נְכוֹנָה מְקַבְּלִים 10 נְקֻדּוֹת. בְּכָל תַּחֲנָה יֵשׁ כַּפְתּוֹר הֶסְבֵּר מְיֻחָד לְיֶלֶד בֶּן 7, וְכַפְתּוֹר לְמִי שֶׁרוֹצֶה לִלְמֹד לְעֹמֶק (גִּיל 12) עִם שְׁאֵלַת אֶתְגָּר. לַחֲצוּ עַל 🔊 כְּדֵי לִשְׁמֹעַ הַקְרָאָה אִטִּית, וְעַל מִלָּה כְּדֵי לִשְׁמֹעַ אוֹתָהּ אוֹת אַחַר אוֹת!</p><div id="kVoiceNote"></div>
+<div id="kCards"></div>
+<div class="kcard" id="kFinal" style="display:none"></div>
+<button class="kbtn" id="kReset" type="button">לְהַתְחִיל מֵחָדָשׁ</button>
+</div></div>
+
+<script>
+const BASE = 4757;
+const DAYS = [
+ ["17.11","נחיתה בהאנוי, זמן חופשי","האנוי"],
+ ["18.11","האנוי, זמן חופשי","האנוי"],
+ ["19.11","הא לונג ביי, עלייה לקרוז Victorious","קרוז"],
+ ["20.11","סיום הקרוז, מעבר לנין בין","נין בין"],
+ ["21.11","נין בין: אופניים, טאם קוק","נין בין"],
+ ["22.11","נין בין: מואה, סדנת אורז (עצמאית, לא כלולה)","נין בין"],
+ ["23.11","טיסת פנים לפוקוק, המראה מתוכננת 11:55. Lahana","פוקוק"],
+ ["24–29.11","פוקוק: בסיס אחד ב-Lahana. פעילויות הן רעיונות עצמאיים, לא כלולים","פוקוק"],
+ ["30.11","חזרה להאנוי, Sunline","האנוי"],
+ ["1.12","טיסה הביתה","טיסה"]
+];
+const PREP = [
+ "דרכונים בתוקף לכל בני המשפחה (בדקו תוקף מעבר לתאריך החזרה)",
+ "בדיקת דרישות כניסה / ויזה לישראלים",
+ "ביטוח נסיעות",
+ "אישור כבודה בטיסות הפנים",
+ "הכנת מזומן דולרים לתשלום לסוכנות",
+ "כרטיס SIM / eSIM",
+ "תרופות והתייעצות לגבי חיסונים",
+ "הורדת מפות אופליין ואפליקציית נסיעות"
+];
+const LS = k => { try { return JSON.parse(localStorage.getItem(k)); } catch(e){ return null; } };
+const SV = (k,v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} };
+
+function checklist(container, items, key, mk){
+  const st = LS(key) || {};
+  items.forEach((it,i)=>{
+    const el = mk(it,i);
+    const cb = el.querySelector('input');
+    cb.checked = !!st[i];
+    cb.addEventListener('change',()=>{ st[i]=cb.checked; SV(key,st); });
+    container.appendChild(el);
+  });
+}
+const dl = document.getElementById('dayList');
+checklist(dl, DAYS, 'vn_days', (d)=>{
+  const row = document.createElement('div'); row.className='day';
+  row.innerHTML = '<div class="d">'+d[0]+'</div><label><input type="checkbox"><div>'+d[1]+'<span class="tag">'+d[2]+'</span></div></label>';
+  return row;
+});
+checklist(document.getElementById('prepList'), PREP, 'vn_prep', (t)=>{
+  const li = document.createElement('li');
+  li.innerHTML = '<label><input type="checkbox"><span>'+t+'</span></label>';
+  return li;
+});
+
+/* ---- stops: used by the route map and by kids mode ---- */
+const STOPS = [
+ {id:'hanoi', n:'האנוי', d:'17–19.11', x:300, y:50, em:'🏙️',
+  txt:'האנוי היא בירת וייטנאם. בעיר העתיקה יש רחובות צרים, הרבה אופנועים ואוכל רחוב טעים.',
+  kid:'האנוי היא העיר הכי חשובה בווייטנאם, כמו שירושלים היא העיר הבירה שלנו. יש בה המון אופנועים, והם נוסעים בלי הפסקה! כשחוצים את הכביש הולכים לאט ובשקט והם נוסעים סביבנו.',
+  q:'מה האנוי בשביל וייטנאם?', o:['בירה','כפר קטן','אי'], c:0},
+ {id:'halong', n:'הא לונג ביי', d:'19–20.11', x:480, y:95, em:'🚢',
+  txt:'במפרץ הא לונג יש אלפי איים וסלעי גיר שבולטים מהמים. ישנים לילה על ספינת קרוז.',
+  kid:'במפרץ יש המון סלעים גדולים וירוקים שיוצאים מהים, כמו הרים בתוך המים. אנחנו נישן על ספינה גדולה, בדיוק כמו בבית מלון שצף על המים!',
+  q:'איפה ישנים בהא לונג?', o:['על ספינה','באוהל','במטוס'], c:0},
+ {id:'ninh', n:'נין בין', d:'20–23.11', x:260, y:175, em:'🚲',
+  txt:'נין בין מכונה "הא לונג של היבשה": הרים מכוסי ירק ושדות אורז. מטיילים באופניים, ובטאם קוק אפשר לשוט בסירה.',
+  kid:'בנין בין יש הרים ירוקים ושדות עם מים שגדל בהם אורז. מטיילים באופניים ובסירה קטנה בין ההרים. טאם קוק אומר "שלוש מערות", כי הסירה עוברת בתוך מערות!',
+  q:'במה מטיילים בנין בין?', o:['באופניים ובסירה','בצוללת','ברכבת הרים'], c:0},
+ {id:'phuquoc', n:'פוקוק', d:'23–30.11', x:200, y:310, em:'🏝️',
+  txt:'פוקוק היא האי הכי גדול של וייטנאם. שבעה לילות במקום אחד, במלון Lahana, עם חופים ושמש.',
+  kid:'פוקוק היא אי, כלומר ים מכל הצדדים. נטוס אליו במטוס. נהיה שם שבעה לילות, נשחק בחול ובמים ונתרגל לא להזיז את המזוודות כל יום.',
+  q:'מה זה אי?', o:['יבשה שמוקפת מים','הר גבוה','עיר גדולה'], c:0},
+ {id:'home', n:'חזרה להאנוי', d:'30.11–1.12', x:320, y:64, em:'🛫',
+  txt:'לילה אחרון בהאנוי, במלון Sunline, ואז טיסה הביתה ב-1.12.',
+  kid:'זה הלילה האחרון בטיול. ישנים במלון, ולמחרת עולים למטוס וחוזרים הביתה לישראל עם המון סיפורים.',
+  q:'לאן חוזרים בסוף הטיול?', o:['לישראל','לפוקוק','להא לונג'], c:0}
+];
+const svgNS='http://www.w3.org/2000/svg';
+const stopsG=document.getElementById('stops'), info=document.getElementById('stopInfo'), mover=document.getElementById('mover');
+/* ---- real map (Leaflet + OpenStreetMap) ---- */
+const GEO=[[21.0285,105.8542],[20.9101,107.1839],[20.2506,105.9745],[10.2899,103.9840],[21.0285,105.8542]];
+const DAY_STOP=[0,0,1,2,2,2,3,3,3,3,3,3,3,4,4]; // 17.11 .. 1.12
+let rmap=null, rMarkers=[];
+if(window.L){
+  rmap=L.map('realMap',{scrollWheelZoom:false}).setView([16,105],5);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; OpenStreetMap'}).addTo(rmap);
+  L.polyline(GEO,{color:'#1f7a5a',weight:3,dashArray:'6 8'}).addTo(rmap);
+  STOPS.slice(0,4).forEach((s,i)=>{
+    const m=L.marker(GEO[i]).addTo(rmap).bindTooltip(s.n);
+    m.on('click',()=>{const d=DAY_STOP.indexOf(i); daySlider.value=d; dayChange();});
+    rMarkers.push(m);
+  });
+} else { document.getElementById('realMap').textContent='המפה לא נטענה (בדקו חיבור לאינטרנט).'; }
+const daySlider=document.getElementById('daySlider');
+function dayChange(){
+  const d=+daySlider.value, i=DAY_STOP[d], s=STOPS[i];
+  const date=new Date(2026,10,17+d);
+  document.getElementById('dayLabel').textContent=date.getDate()+'.'+(date.getMonth()+1);
+  document.getElementById('dayWhere').innerHTML='<b>'+s.em+' '+s.n+'</b> • '+s.txt;
+  showStop(i);
+  if(rmap) rmap.flyTo(GEO[i],i===3?9:8,{duration:1.2});
+}
+daySlider.addEventListener('input',dayChange);
+
+function showStop(i){
+  const s=STOPS[i];
+  mover.style.transform='translate('+s.x+'px,'+s.y+'px)';
+  stopsG.querySelectorAll('.stop').forEach((g,k)=>g.classList.toggle('on',k===i));
+  info.innerHTML='<b>'+s.em+' '+s.n+'</b> • '+s.d+'<br>'+s.txt;
+}
+STOPS.slice(0,4).forEach((s,i)=>{
+  const g=document.createElementNS(svgNS,'g'); g.setAttribute('class','stop'); g.setAttribute('tabindex','0'); g.setAttribute('role','button'); g.setAttribute('aria-label',s.n);
+  g.innerHTML='<circle cx="'+s.x+'" cy="'+s.y+'" r="12"></circle><text class="lbl" x="'+(s.x+20)+'" y="'+(s.y+5)+'">'+s.n+'</text>';
+  g.addEventListener('click',()=>showStop(i));
+  g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();showStop(i);}});
+  stopsG.appendChild(g);
+});
+let playing=false;
+document.getElementById('playRoute').onclick=async()=>{
+  if(playing) return; playing=true;
+  for(let i=0;i<STOPS.length;i++){ showStop(i); await new Promise(r=>setTimeout(r,1800)); }
+  playing=false;
+};
+
+/* ---- kids mode: niqqud text, age-7 explanation, age-12 deep dive ---- */
+const KIDS = {
+ hanoi:{
+  t:'הָאָנוֹי הִיא בִּירַת וִיֶיטְנָאם. בָּעִיר הָעַתִּיקָה יֵשׁ רְחוֹבוֹת צָרִים, הַרְבֵּה אוֹפַנּוֹעִים וְאֹכֶל רְחוֹב טָעִים.',
+  k:'הָאָנוֹי הִיא הָעִיר הֲכִי חֲשׁוּבָה בְּוִיֶיטְנָאם, כְּמוֹ שֶׁיְּרוּשָׁלַיִם חֲשׁוּבָה אֶצְלֵנוּ. יֵשׁ בָּהּ הַרְבֵּה אוֹפַנּוֹעִים שֶׁנּוֹסְעִים כָּל הַזְּמַן. כְּשֶׁחוֹצִים כְּבִישׁ הוֹלְכִים לְאַט וּבְשֶׁקֶט, וְהָאוֹפַנּוֹעִים נוֹסְעִים סְבִיבֵנוּ.',
+  q:'מָה הָאָנוֹי בִּשְׁבִיל וִיֶיטְנָאם?', o:['בִּירָה','כְּפָר קָטָן','אִי'],
+  d:'האנוי נוסדה לפני יותר מאלף שנה. בשנת 1010 הוכרזה כבירה בשם ת׳אנג לונג, "הדרקון העולה". בעיר העתיקה כל רחוב נקרא על שם מקצוע או מוצר, כמו רחוב הכסף ורחוב המשי. משקה מקומי מפורסם הוא קפה ביצה, קפה עם קצף של חלמון. למחשבה: למה לדעתך אופנועים הם אמצעי התחבורה העיקרי בערים כאלה?',
+  cq:'באיזו שנה הוכרזה האנוי כבירה לראשונה, בשם ת׳אנג לונג?', co:['1010','1610','1910']},
+ halong:{
+  t:'בְּמִפְרַץ הָא לוֹנְג יֵשׁ אֲלָפִים שֶׁל אִיִּים וְסַלְעֵי גִּיר גְּבוֹהִים שֶׁיּוֹצְאִים מִן הַמַּיִם. יְשֵׁנִים לַיְלָה עַל סְפִינָה גְּדוֹלָה.',
+  k:'בַּמִּפְרָץ יֵשׁ הַרְבֵּה סְלָעִים גְּדוֹלִים וִירֻקִּים שֶׁיּוֹצְאִים מִן הַיָּם, כְּמוֹ הָרִים בְּתוֹךְ הַמַּיִם. נִישַׁן עַל סְפִינָה גְּדוֹלָה, כְּמוֹ בֵּית מָלוֹן שֶׁצָּף עַל הַמַּיִם!',
+  q:'אֵיפֹה יְשֵׁנִים בְּהָא לוֹנְג?', o:['עַל סְפִינָה','בְּאֹהֶל','בְּמָטוֹס'],
+  d:'השם הא לונג פירושו "הדרקון היורד". לפי האגדה, דרקונים ירקו תכשיטים שהפכו לאיים כדי להגן על המדינה מפולשים. המפרץ הוא אתר מורשת עולמית של אונסק"ו. הסלעים נוצרו מאבן גיר שנשחקה במשך מיליוני שנים. למחשבה: איך מים יכולים לעצב סלעים?',
+  cq:'מה פירוש השם הא לונג?', co:['הדרקון היורד','הים הכחול','האי הגדול']},
+ ninh:{
+  t:'בְּנִין בִּין יֵשׁ הָרִים יְרֻקִּים וּשְׂדוֹת אוֹרֶז. מְטַיְּלִים בְּאוֹפַנַּיִם, וּבְטָאם קוֹק שָׁטִים בְּסִירָה.',
+  k:'בְּנִין בִּין יֵשׁ הָרִים יְרֻקִּים וּשְׂדוֹת עִם מַיִם שֶׁגָּדֵל בָּהֶם אוֹרֶז. מְטַיְּלִים בְּאוֹפַנַּיִם וּבְסִירָה קְטַנָּה בֵּין הֶהָרִים. "טָאם קוֹק" פֵּרוּשׁוֹ "שָׁלוֹשׁ מְעָרוֹת", כִּי הַסִּירָה עוֹבֶרֶת בְּתוֹךְ מְעָרוֹת!',
+  q:'בְּמָה מְטַיְּלִים בְּנִין בִּין?', o:['בְּאוֹפַנַּיִם וּבְסִירָה','בְּצוֹלֶלֶת','בְּרַכֶּבֶת הָרִים'],
+  d:'נין בין מכונה "הא לונג היבשתית" בגלל סלעי הגיר הגבוהים שעולים מתוך שדות האורז. טאם קוק פירושו "שלוש מערות", והשייט עובר בנהר נגו דונג דרך שלוש מערות. אורז גדל בשדות מוצפים מים, שנקראים שדות פדי. למחשבה: למה אורז גדל דווקא בשדות מוצפים?',
+  cq:'איך נקראים שדות אורז מוצפים?', co:['פדי','פיורד','סוואנה']},
+ phuquoc:{
+  t:'פּוּקוֹק הוּא הָאִי הַגָּדוֹל בְּיוֹתֵר שֶׁל וִיֶיטְנָאם. נִהְיֶה שָׁם שִׁבְעָה לֵילוֹת בְּמָלוֹן אֶחָד וְנֵהָנֶה מֵחוֹפִים וּמִשֶּׁמֶשׁ.',
+  k:'פּוּקוֹק הוּא אִי, כְּלוֹמַר חֲתִיכַת אֲדָמָה שֶׁהַיָּם מַקִּיף אוֹתָהּ מִכָּל הַצְּדָדִים. נָטוּס אֵלָיו בְּמָטוֹס. נִהְיֶה שָׁם שִׁבְעָה לֵילוֹת, נְשַׂחֵק בַּחוֹל וּבַמַּיִם, וְלֹא נַחֲלִיף מָלוֹן כָּל יוֹם.',
+  q:'מָה זֶה אִי?', o:['אֲדָמָה שֶׁמֻּקֶּפֶת מַיִם','הַר גָּבוֹהַּ','עִיר גְּדוֹלָה'],
+  d:'פו קווק הוא האי הגדול ביותר של וייטנאם והוא נמצא במפרץ תאילנד, קרוב לקמבודיה יותר מאשר ליבשת וייטנאם. האי מפורסם ברוטב דגים ובפלפל. למחשבה: למה לדעתך שבעה לילות במקום אחד הם דרך טובה לנוח אחרי כמה ימי טיול?',
+  cq:'באיזה מפרץ נמצא פוקוק?', co:['מפרץ תאילנד','מפרץ אילת','מפרץ טונקין']},
+ home:{
+  t:'זֶה הַלַּיְלָה הָאַחֲרוֹן בַּטִּיּוּל. יְשֵׁנִים בְּהָאָנוֹי, וְלַמָּחֳרָת עוֹלִים לַמָּטוֹס וְחוֹזְרִים הַבַּיְתָה.',
+  k:'זֶה הַלַּיְלָה הָאַחֲרוֹן. נִישַׁן בְּמָלוֹן, וּבַבֹּקֶר נַעֲלֶה לַמָּטוֹס וְנַחֲזֹר הַבַּיְתָה לְיִשְׂרָאֵל עִם הַרְבֵּה סִפּוּרִים.',
+  q:'לְאָן חוֹזְרִים בְּסוֹף הַטִּיּוּל?', o:['לְיִשְׂרָאֵל','לְפּוּקוֹק','לְהָא לוֹנְג'],
+  d:'וייטנאם היא מדינה ארוכה וצרה, ועל המפה היא דומה לאות S. הצפון (האנוי, הא לונג, נין בין) והדרום (פוקוק) רחוקים זה מזה, ולכן יש בטיול טיסת פנים. למחשבה: השוו את מזג האוויר בהאנוי ובפוקוק בחודש נובמבר.',
+  cq:'לאיזו אות דומה צורת וייטנאם על המפה?', co:['S','O','L']}
+};
+const kids=document.getElementById('kids'), kCards=document.getElementById('kCards');
+let kState=LS('vn_kids')||{};
+const kMax=STOPS.length*20;
+function kScore(){return Object.values(kState).filter(v=>v===true).length*10;}
+function kRefresh(){
+  document.getElementById('kScore').textContent=kScore();
+  const f=document.getElementById('kFinal');
+  const done=STOPS.every(s=>kState[s.id]===true);
+  f.style.display=done?'block':'none';
+  if(done) f.innerHTML='<div class="em" style="font-size:3.5rem">🏆</div><h3>כֹּל הַכָּבוֹד! סִיַּמְתֶּם אֶת כָּל הַתַּחֲנוֹת!</h3><p>אֶפְשָׁר לְהַמְשִׁיךְ לְשַׁאֲלוֹת הָאֶתְגָּר לְגִיל 12 וּלְהַגִּיעַ ל־'+kMax+' נְקֻדּוֹת.</p>';
+}
+function kQuiz(box, key, q, opts, correct, good){
+  const pop=box.querySelector('.pop'), area=box.querySelector('.opts');
+  opts.map((t,k)=>[t,k]).sort(()=>Math.random()-.5).forEach(([t,k])=>{
+    const b=document.createElement('button'); b.type='button'; b.className='kbtn opt'; b.textContent=t;
+    if(kState[key]===true && k===correct) b.classList.add('good');
+    b.onclick=()=>{
+      if(kState[key]===true) return;
+      if(k===correct){ kState[key]=true; b.classList.add('good'); pop.textContent=good; SV('vn_kids',kState); kRefresh(); }
+      else { b.classList.add('bad'); pop.textContent='כִּמְעַט! נַסּוּ שׁוּב 🙂'; }
+    };
+    area.appendChild(b);
+  });
+  if(kState[key]===true) pop.textContent=good;
+}
+/* ---- read-aloud: slow TTS with word + letter highlighting ---- */
+const synth=window.speechSynthesis;
+let kTok=0, kVoice=null;
+const MARK=/[\u0591-\u05C7]/;
+function pickVoice(){
+  if(!synth) return null;
+  const vs=synth.getVoices();
+  kVoice=vs.find(v=>/^he/i.test(v.lang))||vs.find(v=>/hebrew|עברית/i.test(v.name))||null;
+  return kVoice;
+}
+if(synth) synth.onvoiceschanged=pickVoice;
+function kRate(){return parseFloat(document.getElementById('kRate').value)||0.6;}
+function speakP(text,rate,onb){
+  return new Promise(res=>{
+    const u=new SpeechSynthesisUtterance(text); u.lang='he-IL'; if(kVoice||pickVoice()) u.voice=kVoice;
+    u.rate=rate; u.pitch=1.15; u.onend=res; u.onerror=res; if(onb) u.onboundary=onb;
+    synth.speak(u);
+  });
+}
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+function kStopAll(){
+  kTok++; if(synth) synth.cancel();
+  document.querySelectorAll('#kids .on').forEach(e=>e.classList.remove('on'));
+}
+function kPrep(card){
+  card.querySelectorAll('.rd').forEach(el=>{
+    const text=el.textContent; el.textContent='';
+    const btn=document.createElement('button'); btn.type='button'; btn.className='kbtn rbtn'; btn.textContent='🔊 הַקְרָאָה';
+    const box=document.createElement('span'); box.className='rdt';
+    const words=[]; let pos=0;
+    text.split(/(\s+)/).forEach(tok=>{
+      if(!tok){return;}
+      if(/^\s+$/.test(tok)){box.appendChild(document.createTextNode(tok)); pos+=tok.length; return;}
+      const w=document.createElement('span'); w.className='w'; w.title='לחצו כדי לשמוע אות אחרי אות';
+      const letters=[];
+      for(const ch of tok){
+        if(MARK.test(ch) && letters.length){ letters[letters.length-1].textContent+=ch; continue; }
+        const l=document.createElement('span'); l.className='l'; l.textContent=ch; letters.push(l);
+      }
+      letters.forEach(l=>w.appendChild(l));
+      w._text=tok; w._letters=letters;
+      box.appendChild(w); words.push({start:pos,w}); pos+=tok.length;
+    });
+    el.appendChild(btn); el.appendChild(box);
+    btn.onclick=()=>readBlock(text,words);
+    words.forEach(o=>o.w.onclick=()=>spellWord(o.w));
+  });
+}
+async function readBlock(text,words){
+  if(!synth){ kNote('הַדַּפְדְּפָן הַזֶּה לֹא תּוֹמֵךְ בְּהַקְרָאָה.'); return; }
+  kStopAll(); const my=kTok; let seen=false, cur=null;
+  const mark=i=>{ if(cur) cur.classList.remove('on'); cur=words[i]?words[i].w:null; if(cur) cur.classList.add('on'); };
+  const rate=kRate();
+  if(!pickVoice()) kNote('לֹא נִמְצָא קוֹל בְּעִבְרִית בַּמַּכְשִׁיר הַזֶּה, אָז הַהַקְרָאָה אוּלַי לֹא תִּשְׁמַע טוֹב.');
+  else kNote('');
+  const fb=setTimeout(async()=>{ // no word events from this voice: highlight by estimated timing
+    if(seen||my!==kTok) return;
+    for(let i=0;i<words.length&&my===kTok;i++){ mark(i); await sleep((300+110*words[i].w._text.length)*(0.6/rate)); }
+  },1200);
+  await speakP(text,rate,e=>{
+    if(my!==kTok) return; if(e.name&&e.name!=='word') return; seen=true;
+    let idx=0; words.forEach((o,i)=>{ if(o.start<=e.charIndex) idx=i; }); mark(idx);
+  });
+  clearTimeout(fb);
+  if(my===kTok){ mark(-1); }
+}
+async function spellWord(w){
+  if(!synth) return; kStopAll(); const my=kTok; w.classList.add('on');
+  for(const l of w._letters){
+    if(my!==kTok) return;
+    if(!/[\u05D0-\u05EA]/.test(l.textContent)) continue;
+    l.classList.add('on'); await speakP(l.textContent,Math.min(kRate(),0.5)); await sleep(200); l.classList.remove('on');
+  }
+  if(my===kTok){ await speakP(w._text,kRate()); w.classList.remove('on'); }
+}
+function kNote(t){const n=document.getElementById('kVoiceNote'); n.textContent=t; n.style.display=t?'block':'none';}
+document.getElementById('kStop').onclick=kStopAll;
+
+function kBuild(){
+  kCards.innerHTML=''; document.getElementById('kMax').textContent=kMax;
+  STOPS.forEach(s=>{
+    const K=KIDS[s.id];
+    const c=document.createElement('div'); c.className='kcard';
+    c.innerHTML='<div class="em">'+s.em+'</div><h3>'+s.n+' <small>('+s.d+')</small></h3><p class="rd">'+K.t+'</p>'
+     +'<button class="kbtn alt" data-k="7" type="button">🧒 הֶסְבֵּר לְגִיל 7</button>'
+     +'<button class="kbtn" data-k="12" type="button">🔎 לִלְמֹד עוֹד (גִּיל 12)</button>'
+     +'<div class="kexp rd" data-for="7">'+K.k+'</div>'
+     +'<div class="kexp rd" data-for="12" dir="rtl" style="font-size:1.1rem">'+K.d+'</div>'
+     +'<div class="qbox" data-q="b"><p><b>שְׁאֵלָה:</b> '+K.q+'</p><div class="opts"></div><div class="pop" aria-live="polite"></div></div>'
+     +'<div class="qbox" data-q="c" style="border-top:2px dashed #0002;margin-top:10px"><p><b>שְׁאֵלַת אֶתְגָּר (גִּיל 12):</b> '+K.cq+'</p><div class="opts"></div><div class="pop" aria-live="polite"></div></div>';
+    kPrep(c);
+    c.querySelectorAll('button[data-k]').forEach(btn=>btn.onclick=()=>c.querySelector('.kexp[data-for="'+btn.dataset.k+'"]').classList.toggle('show'));
+    kQuiz(c.querySelector('[data-q="b"]'), s.id, K.q, K.o, 0, 'נָכוֹן! +10 נְקֻדּוֹת 🎉');
+    kQuiz(c.querySelector('[data-q="c"]'), s.id+'_c', K.cq, K.co, 0, 'מְצֻיָּן! +10 נְקֻדּוֹת 🌟');
+    kCards.appendChild(c);
+  });
+  kRefresh();
+}
+const kidsBtn=document.getElementById('kidsBtn');
+kidsBtn.onclick=()=>{kBuild();kids.classList.add('open');document.body.style.overflow='hidden';kids.scrollTop=0;};
+document.getElementById('kidsClose').onclick=()=>{kStopAll();kids.classList.remove('open');document.body.style.overflow='';};
+document.getElementById('kReset').onclick=()=>{kState={};SV('vn_kids',kState);kBuild();};
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&kids.classList.contains('open')) document.getElementById('kidsClose').click();});
+
+dayChange();
+const tbl = document.getElementById('extras');
+function recalc(){
+  let s=0; tbl.querySelectorAll('input[type=number]').forEach(i=>s+=parseFloat(i.value)||0);
+  document.getElementById('sumExtras').textContent='$'+s.toLocaleString('en-US');
+  document.getElementById('sumAll').textContent='$'+(BASE+s).toLocaleString('en-US');
+  const rows=[...tbl.querySelectorAll('tr')].slice(1).map(r=>[r.querySelector('input[type=text]').value,r.querySelector('input[type=number]').value]);
+  SV('vn_extras',rows);
+}
+function addRow(n='',v=''){
+  const tr=document.createElement('tr');
+  tr.innerHTML='<td><input type="text" placeholder="למשל: סדנת אורז"></td><td><input type="number" min="0" placeholder="0"></td>';
+  tr.querySelector('input[type=text]').value=n; tr.querySelector('input[type=number]').value=v;
+  tr.addEventListener('input',recalc); tbl.appendChild(tr);
+}
+const saved = LS('vn_extras');
+if(saved && saved.length) saved.forEach(r=>addRow(r[0],r[1])); else { addRow('סדנת אורז (22.11)'); addRow('כרטיסי פעילויות בפוקוק'); addRow('תחבורה מקומית'); }
+document.getElementById('addRow').onclick=()=>addRow();
+recalc();
+</script>
+</body>
+</html>
