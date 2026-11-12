@@ -6,33 +6,43 @@
 <title>Lahav Family in Vietnam 2026</title>
 <meta name="description" content="Shared family planning for a Vietnam trip, 17.11–1.12.2026">
 <style>
-:root{--bg:#f6f3ec;--card:#fff;--ink:#1d2b24;--muted:#5f6d66;--accent:#1f7a5a;--accent2:#d9822b;--line:#e3ded2;--warn:#fff4e0}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121815;--card:#1b2420;--ink:#eef2ef;--muted:#9fb0a7;--accent:#4cc79a;--accent2:#f0a35a;--line:#2b3731;--warn:#2d2517}}
+:root{--bg:#f5f2eb;--card:#fff;--ink:#1c2b23;--muted:#5d6c64;--accent:#1d7a58;--accent2:#d97f26;--line:#e4ded1;--warn:#fff4e0;--shadow:0 14px 34px rgba(28,43,35,.09);--shadow-sm:0 3px 12px rgba(28,43,35,.07);--r:18px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121815;--card:#1b2420;--ink:#eef2ef;--muted:#9fb0a7;--accent:#4cc79a;--accent2:#f0a35a;--line:#2b3731;--warn:#2d2517;--shadow:0 14px 34px rgba(0,0,0,.4);--shadow-sm:0 3px 12px rgba(0,0,0,.3)}}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",Arial,"Heebo",sans-serif;line-height:1.6}
 a{color:var(--accent)}
 header.nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
-header.nav nav{display:flex;gap:4px;overflow-x:auto;padding:8px 16px;max-width:1000px;margin:auto}
+@supports(backdrop-filter:blur(8px)){header.nav{background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}}
+header.nav nav{display:flex;gap:4px;overflow-x:auto;padding:10px 16px;max-width:1060px;margin:auto;align-items:center}
 header.nav a{white-space:nowrap;text-decoration:none;color:var(--ink);padding:6px 12px;border-radius:99px;font-size:.95rem}
 header.nav a:hover{background:var(--line)}
 .langswitch{font-weight:700;border:1px solid var(--line)}
-main{max-width:1000px;margin:auto;padding:0 16px 64px}
-section{padding:48px 0 8px}
+main{max-width:1060px;margin:auto;padding:0 16px 64px}
+section{padding:52px 0 8px;scroll-margin-top:64px}
 .eyebrow{letter-spacing:.15em;font-size:.8rem;color:var(--accent);font-weight:700}
-h1{font-size:clamp(2.2rem,8vw,4rem);line-height:1.1;margin:.3em 0}
-h1 span{color:var(--accent2)}
-h2{font-size:1.8rem;margin:0 0 16px}
-.lead{font-size:1.15rem;color:var(--muted);max-width:620px}
-.btn{display:inline-block;background:var(--accent);color:#fff;padding:10px 20px;border-radius:99px;text-decoration:none;font-weight:600;margin-top:8px}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:28px 0}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}
-.stat b{display:block;font-size:2rem;color:var(--accent)}
+h1{font-size:clamp(2.3rem,8vw,4.2rem);line-height:1.08;margin:.3em 0;letter-spacing:-.01em}
+h1 span{background:linear-gradient(100deg,var(--accent2),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:1.8rem;margin:0 0 16px;letter-spacing:-.01em}
+.lead{font-size:1.15rem;color:var(--muted);max-width:640px}
+#journey{position:relative}
+#journey::before{content:"";position:absolute;top:-30px;inset-inline-end:-60px;width:380px;height:380px;background:radial-gradient(circle,rgba(29,122,88,.16),transparent 70%);pointer-events:none;z-index:-1}
+#journey::after{content:"";position:absolute;top:190px;inset-inline-start:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(217,127,38,.13),transparent 70%);pointer-events:none;z-index:-1}
+.btn{display:inline-block;background:var(--accent);color:#fff;padding:11px 22px;border-radius:99px;text-decoration:none;font-weight:600;margin-top:8px;box-shadow:0 6px 16px rgba(29,122,88,.25);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(29,122,88,.3)}
+.btn.ghost{background:transparent;color:var(--accent);border:2px solid var(--accent);box-shadow:none;margin-inline-start:8px}
+.btn.ghost:hover{background:var(--accent);color:#fff}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:30px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;box-shadow:var(--shadow-sm)}
+.stat b{display:block;font-size:2.1rem;color:var(--accent)}
 .stat small{color:var(--muted)}
-.chapters{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
-.chapters .n{color:var(--accent2);font-weight:700}
+.chapters{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}
+.chapters .card{transition:transform .18s,box-shadow .18s}
+.chapters .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.chapters .n{color:var(--accent2);font-weight:800;font-size:1.05rem}
 .chapters h3{margin:.2em 0}
-.notice{background:var(--warn);border:1px solid var(--line);border-radius:16px;padding:16px;margin:16px 0}
+.chapters small{color:var(--muted)}
+.notice{background:var(--warn);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin:16px 0}
 .notice h3{margin:0 0 4px}
 .day{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--line)}
 .day:last-child{border:0}
@@ -53,13 +63,41 @@ ul.check label{display:flex;gap:10px;cursor:pointer}
 ul.check input{width:18px;height:18px;accent-color:var(--accent)}
 ul.check input:checked+span{opacity:.55;text-decoration:line-through}
 .q li{margin-bottom:6px}
-footer{border-top:1px solid var(--line);padding:24px 16px;color:var(--muted);font-size:.9rem;max-width:1000px;margin:auto}
+footer{border-top:1px solid var(--line);padding:24px 16px;color:var(--muted);font-size:.9rem;max-width:1060px;margin:auto}
 @media(max-width:560px){.day{flex-direction:column;gap:4px}}
 #routeSvg{width:100%;height:auto;display:block;background:linear-gradient(var(--bg),var(--card));border-radius:12px}
 #routeSvg .stop{cursor:pointer}
 #routeSvg .stop circle{fill:var(--card);stroke:var(--accent);stroke-width:4;transition:r .2s}
 #routeSvg .stop:hover circle,#routeSvg .stop.on circle{fill:var(--accent2);r:16}
 #routeSvg text.lbl{fill:var(--ink);font-size:15px;font-weight:700}
+/* ---- Google Maps explorer ---- */
+.mapx{display:grid;grid-template-columns:360px 1fr;gap:16px;align-items:stretch}
+.mapx-side{display:flex;flex-direction:column;min-height:0}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.chip{font:inherit;font-weight:600;font-size:.9rem;padding:7px 14px;border-radius:99px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer;transition:all .15s}
+.chip:hover{border-color:var(--accent)}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.placelist{overflow-y:auto;max-height:432px;display:flex;flex-direction:column;gap:8px;padding-inline-end:4px}
+.place{display:flex;gap:10px;align-items:flex-start;text-align:start;font:inherit;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:14px;padding:10px 12px;cursor:pointer;transition:all .15s;width:100%}
+.place:hover{border-color:var(--accent);transform:translateY(-1px)}
+.place.on{border-color:var(--accent);background:var(--card);box-shadow:var(--shadow-sm);outline:2px solid var(--accent);outline-offset:-2px}
+.place .pe{font-size:1.4rem;line-height:1.2}
+.place .pb{display:flex;flex-direction:column;gap:2px}
+.place .pb b{font-size:.98rem}
+.place .pb small{color:var(--muted);font-size:.8rem;line-height:1.35}
+.place .pb small.pn{color:var(--accent2)}
+.mapx-view{display:flex;flex-direction:column;gap:10px}
+.placeinfo{display:flex;flex-direction:column;gap:2px}
+.placeinfo b{font-size:1.1rem}
+.placeinfo span{color:var(--muted);font-size:.9rem}
+#gmap,#dayMap{width:100%;border:0;border-radius:14px;background:var(--line);display:block}
+#gmap{height:430px}
+#dayMap{height:360px;margin-top:8px}
+.mapx-actions{display:flex;gap:10px;flex-wrap:wrap}
+.mapx-actions .btn{margin-top:0}
+.mapx-actions .btn.ghost{margin-inline-start:0}
+.mapnote{color:var(--muted);font-size:.85rem;margin:0}
+@media(max-width:860px){.mapx{grid-template-columns:1fr}.placelist{max-height:290px}#gmap{height:340px}}
 .kidsbtn{border:0;cursor:pointer;background:var(--accent2);color:#fff;font:inherit;font-weight:700;padding:6px 14px;border-radius:99px;white-space:nowrap}
 #kids{position:fixed;inset:0;z-index:20;overflow:auto;background:linear-gradient(#fff3c4,#c9f0e0);color:#1d2b24;font-size:1.25rem;display:none}
 #kids.open{display:block}
@@ -86,8 +124,6 @@ footer{border-top:1px solid var(--line);padding:24px 16px;color:var(--muted);fon
 #kVoiceNote{display:none;background:#fde2e2;border-radius:12px;padding:8px 12px;margin:8px 0;font-size:1rem}
 .pop{font-weight:800;color:#1f7a5a;min-height:1.6em}
 </style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 </head>
 <body>
 <header class="nav"><nav>
@@ -99,7 +135,7 @@ footer{border-top:1px solid var(--line);padding:24px 16px;color:var(--muted);fon
 <div class="eyebrow">THE LAHAV FAMILY IN VIETNAM 2026</div>
 <h1>Nature up north.<br><span>Beach time in Phu Quoc.</span></h1>
 <p class="lead">Kobi's updated plan, from landing to the flight home. All the days, lodging and costs in one place.</p>
-<a class="btn" href="#days">Explore the route →</a>
+<a class="btn" href="#days">Explore the route →</a> <a class="btn ghost" href="#map">🗺️ Straight to the map</a>
 <p style="color:var(--muted);font-size:.9rem">17.11–1.12.2026 • Kobi's plan, updated 29.10</p>
 
 <div class="stats">
@@ -128,8 +164,32 @@ $4,757 in cash to the agency in Vietnam. Baggage allowance on the domestic fligh
 </section>
 
 <section id="map">
-<div class="eyebrow">ROUTE / INTERACTIVE</div>
-<h2>The route on the map</h2>
+<div class="eyebrow">MAP / GOOGLE MAPS</div>
+<h2>Everything on a real Google Map</h2>
+<p class="lead">All our hotels, the airports, and Kobi's recommended restaurants and cafés. Pick a place to see it on a real Google Map - or launch directions straight from here.</p>
+<div class="mapx">
+<div class="card mapx-side">
+<div class="chips" id="placeChips">
+<button type="button" class="chip on" data-cat="all">All</button>
+<button type="button" class="chip" data-cat="hotel">🏨 Our hotels</button>
+<button type="button" class="chip" data-cat="airport">✈️ Airports</button>
+<button type="button" class="chip" data-cat="food">🍜 Restaurants &amp; cafés</button>
+</div>
+<div id="placeList" class="placelist"></div>
+</div>
+<div class="card mapx-view">
+<div id="placeInfo" class="placeinfo"></div>
+<iframe id="gmap" title="Google Map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Hanoi%20Pearl%20Hotel%2C%206%20Bao%20Khanh%20Lane%2C%20Hoan%20Kiem%2C%20Hanoi&amp;z=16&amp;output=embed"></iframe>
+<div class="mapx-actions">
+<a id="gmDir" class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;destination=Hanoi%20Pearl%20Hotel%2C%206%20Bao%20Khanh%20Lane%2C%20Hoan%20Kiem%2C%20Hanoi">🧭 Directions</a>
+<a id="gmOpen" class="btn ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Hanoi%20Pearl%20Hotel%2C%206%20Bao%20Khanh%20Lane%2C%20Hoan%20Kiem%2C%20Hanoi">Open in Google Maps</a>
+</div>
+<p class="mapnote">A real Google Map, loaded straight from Google - drag and zoom inside it. Directions open Google Maps from your current location. The restaurants are Kobi's recommendations (11.11) - nothing is booked.</p>
+</div>
+</div>
+<p class="mapnote" style="margin-top:10px">🗺️ All 24 of Kobi's Hanoi places together on one map: <a target="_blank" rel="noopener" href="https://maps.app.goo.gl/C1dY9wWbZMmpT65P9">his shared Google Maps list</a>.</p>
+
+<h2 style="margin-top:36px">The route, animated</h2>
 <p class="lead">Click a stop, or "Set off" to watch the journey move along. The map is stylized and not to scale.</p>
 <div class="card">
 <svg id="routeSvg" viewBox="0 0 600 380" role="img" aria-label="Stylized map of the route">
@@ -142,8 +202,8 @@ $4,757 in cash to the agency in Vietnam. Baggage allowance on the domestic fligh
 <button class="btn" id="playRoute" style="border:0;cursor:pointer">▶ Set off</button>
 </div>
 
-<h2 style="margin-top:32px">Where we are, on a real map</h2>
-<p class="lead">Drag the slider to pick a trip day and see where the family physically is that day. You can also click a marker on the map.</p>
+<h2 style="margin-top:36px">Where we are, day by day</h2>
+<p class="lead">Drag the slider to pick a trip day and see where the family is that day - on a real Google Map.</p>
 <div class="card">
 <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
 <label for="daySlider" style="font-weight:700">Trip day:</label>
@@ -151,8 +211,8 @@ $4,757 in cash to the agency in Vietnam. Baggage allowance on the domestic fligh
 <b id="dayLabel"></b>
 </div>
 <div id="dayWhere" style="margin:8px 0;color:var(--muted)"></div>
-<div id="realMap" style="height:400px;border-radius:12px;direction:ltr" aria-label="Real map of the route"></div>
-<p style="color:var(--muted);font-size:.85rem;margin-bottom:0">Marker locations approximate the city or area, not the exact hotel address. Map: OpenStreetMap.</p>
+<iframe id="dayMap" title="Google Map of the day's area" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Hanoi%2C%20Vietnam&amp;z=11&amp;output=embed"></iframe>
+<p class="mapnote" style="margin-top:8px">The map shows the day's city or area, not the exact hotel address.</p>
 </div>
 </section>
 
@@ -228,7 +288,7 @@ $4,757 in cash to the agency in Vietnam. Baggage allowance on the domestic fligh
 <li><a target="_blank" rel="noopener" href="https://maps.app.goo.gl/C1dY9wWbZMmpT65P9">The full list on Google Maps: &quot;וייטנאם hanoi&quot; by Kobi Dahan, 24 places</a> &#128506;&#65038;</li>
 </ul>
 <p style="margin:.6rem 0 0;font-size:.85rem;opacity:.75">Shared by Roee on 11.11.2026. Each place links to its Google Maps listing; the notes are Kobi&#39;s from the list (translated), ratings as of 11.11.2026. Recommendations only - not part of the package, nothing booked.</p>
-<p style="margin:.8rem 0 .3rem"><b>Food &amp; coffee</b></p>
+<p style="margin:.8rem 0 .3rem"><b>Food &amp; coffee</b> · <a href="#map">🗺️ see them on the map</a></p>
 <ul class="check" style="list-style:none">
 <li><a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Cafe+Dinh/@21.150675,105.6623217,11z/data=!4m10!1m3!11m2!2sKeNxOga0QyadJi3-14pbIA!3e3!3m5!1s0x3135abbf8b1588c1:0x58689a7aebd1682d!8m2!3d21.0320036!4d105.8521694!16s%2Fg%2F1hm6bz5l2?entry=ttu&amp;g_ep=EgoyMDI2MTEwOC4wIKXMDSoASAFQAw%3D%3D">Cafe Dinh</a> - the first and original egg coffee; 2nd floor, lake-view photos. Rating 4.6 from 4,903 reviews.</li>
 <li><a target="_blank" rel="noopener" href="https://www.google.com/maps/place/Hanoi+Egg+Coffee/@21.033105,32.025131,3z/data=!4m10!1m3!11m2!2sKeNxOga0QyadJi3-14pbIA!3e3!3m5!1s0x3135abc0c29a6681:0x666eae5ebaaa5edb!8m2!3d21.033105!4d105.853256!16s%2Fg%2F11f57fwzt6?entry=ttu&amp;g_ep=EgoyMDI2MTEwOC4wIKXMDSoASAFQAw%3D%3D">Hanoi Egg Coffee</a> - egg coffee cafe. Rating 4.6 from 568 reviews.</li>
@@ -267,7 +327,7 @@ $4,757 in cash to the agency in Vietnam. Baggage allowance on the domestic fligh
 
 <footer>
 <p><b>How are checkmarks and the budget saved?</b> In your browser only (localStorage), no server. Each device saves separately.</p>
-<p>Updated 29.10.2026: Kobi's updated quote incorporated - price $4,757 in cash to the agency in Vietnam, domestic flights included, and the lodging and cruise names. The 24.10 change is reflected in the plan. Updated 6.11.2026: the cruise was upgraded from Doris to Victorious by the supplier; verified official Instagram links added (Hanoi Pearl, Hang M&uacute;a). Updated 11.11.2026: Kobi&#39;s Hanoi recommendations added from his shared Google Maps list (24 places with links) under Links. Anyone with the link can view. No passport or booking details. No booking, payment or messaging from the site.</p>
+<p>Updated 29.10.2026: Kobi's updated quote incorporated - price $4,757 in cash to the agency in Vietnam, domestic flights included, and the lodging and cruise names. The 24.10 change is reflected in the plan. Updated 6.11.2026: the cruise was upgraded from Doris to Victorious by the supplier; verified official Instagram links added (Hanoi Pearl, Hang M&uacute;a). Updated 11.11.2026: Kobi&#39;s Hanoi recommendations added from his shared Google Maps list (24 places with links) under Links. Updated 12.11.2026: full visual refresh; a new real Google Maps view of all the hotels, airports and Kobi&#39;s restaurant picks, with directions launches. Anyone with the link can view. No passport or booking details. No booking, payment or messaging from the site.</p>
 </footer>
 
 <div id="kids" role="dialog" aria-label="מצב ילדים" aria-modal="true" dir="rtl">
@@ -354,20 +414,62 @@ const STOPS = [
 ];
 const svgNS='http://www.w3.org/2000/svg';
 const stopsG=document.getElementById('stops'), info=document.getElementById('stopInfo'), mover=document.getElementById('mover');
-/* ---- real map (Leaflet + OpenStreetMap) ---- */
-const GEO=[[21.0285,105.8542],[20.9101,107.1839],[20.2506,105.9745],[10.2899,103.9840],[21.0285,105.8542]];
-const DAY_STOP=[0,0,1,2,2,2,3,3,3,3,3,3,3,4,4]; // 17.11 .. 1.12
-let rmap=null, rMarkers=[];
-if(window.L){
-  rmap=L.map('realMap',{scrollWheelZoom:false}).setView([16,105],5);
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; OpenStreetMap'}).addTo(rmap);
-  L.polyline(GEO,{color:'#1f7a5a',weight:3,dashArray:'6 8'}).addTo(rmap);
-  STOPS.slice(0,4).forEach((s,i)=>{
-    const m=L.marker(GEO[i]).addTo(rmap).bindTooltip(s.n);
-    m.on('click',()=>{const d=DAY_STOP.indexOf(i); daySlider.value=d; dayChange();});
-    rMarkers.push(m);
+/* ---- Google Maps explorer: hotels, airports, Kobi's restaurant picks ---- */
+const GPLACES=[
+ {c:'hotel',e:'🏨',n:'Hanoi Pearl Hotel',w:'Hanoi · Old Quarter',d:'17–19.11 · 2 nights',t:'Independent booking or package - to close',q:'Hanoi Pearl Hotel, 6 Bao Khanh Lane, Hoan Kiem, Hanoi'},
+ {c:'hotel',e:'🛳️',n:'Victorious Cruise',w:'Ha Long Bay',d:'19–20.11 · 1 night',t:'Upgraded from Doris - room and transfer details to confirm',q:'Victorious Cruise, Ha Long Bay'},
+ {c:'hotel',e:'🏨',n:'Ninh Binh lodging',w:'Tam Coc area, Ninh Binh',d:'20–23.11 · 3 nights',t:'Name to update from Kobi - the map shows the Tam Coc area',q:'Tam Coc, Ninh Binh, Vietnam'},
+ {c:'hotel',e:'🏝️',n:'Lahana Resort',w:'Phu Quoc',d:'23–30.11 · 7 nights',t:'One base for the whole week',q:'Lahana Resort Phu Quoc'},
+ {c:'hotel',e:'🏨',n:'Sunline Hotel',w:'Hanoi',d:'30.11–1.12 · 1 night',t:'The final night before the flight home',q:'Sunline Hotel Hanoi'},
+ {c:'airport',e:'✈️',n:'Ben Gurion Airport (TLV)',w:'Tel Aviv',d:'Out and back',t:'The international flights',q:'Ben Gurion Airport, Israel'},
+ {c:'airport',e:'✈️',n:'Noi Bai Airport (HAN)',w:'Hanoi',d:'Landing 17.11 · 23.11 flight to Phu Quoc, 11:55 · back 30.11 · home 1.12',t:'',q:'Noi Bai International Airport, Hanoi'},
+ {c:'airport',e:'✈️',n:'Phu Quoc Airport (PQC)',w:'Phu Quoc',d:'Landing 23.11 · flight back 30.11',t:'',q:'Phu Quoc International Airport'},
+ {c:'food',e:'☕',n:'Cafe Dinh',w:'Hanoi · Old Quarter',d:"Kobi's pick · rating 4.6",t:'The first and original egg coffee; 2nd floor, lake view',q:'Cafe Dinh, Hanoi'},
+ {c:'food',e:'☕',n:'Hanoi Egg Coffee',w:'Hanoi · Old Quarter',d:"Kobi's pick · rating 4.6",t:'Egg coffee cafe',q:'Hanoi Egg Coffee, Hanoi'},
+ {c:'food',e:'☕',n:'Hanoi Coffee Culture',w:'Hanoi · Old Quarter',d:"Kobi's pick · rating 4.8",t:'Cafe',q:'Hanoi Coffee Culture, Hanoi'},
+ {c:'food',e:'☕',n:'The Note Coffee',w:'Hanoi · Old Quarter',d:"Kobi's pick · rating 4.3",t:'The notes cafe - great for photos, per Kobi',q:'The Note Coffee, Hanoi'},
+ {c:'food',e:'🍕',n:"Pizza 4P's Bao Khanh",w:'Hanoi · Old Quarter',d:"Kobi's pick · rating 4.9",t:'Pizza and pasta; Kobi says book ahead; marked temporarily closed on Google',q:"Pizza 4P's Bao Khanh, Hanoi"},
+ {c:'food',e:'🍜',n:'Vua Chả Cá',w:'Hanoi',d:"Kobi's pick · rating 4.5",t:'Vietnamese restaurant',q:'Vua Chả Cá, Hanoi'},
+ {c:'food',e:'🍜',n:'Ding Doong Restaurant',w:'Hanoi · Old Quarter',d:"Kobi's pick · rating 4.9",t:'Vietnamese restaurant',q:'Ding Doong Restaurant Hanoi'},
+ {c:'food',e:'🍜',n:'MIAs restaurant',w:'Hanoi · Old Quarter',d:"Kobi's pick · rating 4.9",t:'Vietnamese restaurant',q:'MIAs restaurant, Hanoi'},
+ {c:'food',e:'🍜',n:'Red Bean Ma May',w:'Hanoi · Old Quarter',d:"Kobi's pick · rating 4.9",t:'Vietnamese restaurant',q:'Red Bean Ma May, Hanoi'},
+ {c:'food',e:'🍺',n:'Beer Street Seafood',w:'Hanoi · Ta Hien pub street',d:"Kobi's pick · rating 4.3",t:'Kobi warns to beware of people offering prostitution and drugs',q:'Beer Street Seafood, Hanoi'}
+];
+const gsrc=(q,z)=>'https://www.google.com/maps?q='+encodeURIComponent(q)+'&z='+(z||16)+'&output=embed';
+const gdir=q=>'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(q);
+const gopen=q=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q);
+const gmap=document.getElementById('gmap'), gInfo=document.getElementById('placeInfo'),
+      gDir=document.getElementById('gmDir'), gOpen=document.getElementById('gmOpen'),
+      gList=document.getElementById('placeList');
+let gCat='all', gSel=0;
+function gRenderList(){
+  gList.innerHTML='';
+  GPLACES.forEach((p,i)=>{
+    if(gCat!=='all'&&p.c!==gCat) return;
+    const b=document.createElement('button'); b.type='button'; b.className='place'+(i===gSel?' on':'');
+    b.innerHTML='<span class="pe">'+p.e+'</span><span class="pb"><b>'+p.n+'</b><small>'+p.w+' · '+p.d+'</small>'+(p.t?'<small class="pn">'+p.t+'</small>':'')+'</span>';
+    b.onclick=()=>gSelect(i);
+    gList.appendChild(b);
   });
-} else { document.getElementById('realMap').textContent='The map did not load (check your internet connection).'; }
+}
+function gSelect(i){
+  gSel=i; const p=GPLACES[i];
+  gInfo.innerHTML='<b>'+p.e+' '+p.n+'</b><span>'+p.w+(p.d?' · '+p.d:'')+'</span>';
+  gmap.src=gsrc(p.q);
+  gDir.href=gdir(p.q); gOpen.href=gopen(p.q);
+  gRenderList();
+}
+document.querySelectorAll('#placeChips .chip').forEach(ch=>{
+  ch.onclick=()=>{
+    document.querySelectorAll('#placeChips .chip').forEach(x=>x.classList.remove('on'));
+    ch.classList.add('on'); gCat=ch.dataset.cat; gRenderList();
+  };
+});
+gSelect(0);
+/* ---- real Google Maps: day-by-day view ---- */
+const DAY_STOP=[0,0,1,2,2,2,3,3,3,3,3,3,3,4,4]; // 17.11 .. 1.12
+const STOPQ=['Hanoi, Vietnam','Ha Long Bay, Vietnam','Ninh Binh, Vietnam','Phu Quoc, Vietnam','Hanoi, Vietnam'];
+const dayMap=document.getElementById('dayMap');
 const daySlider=document.getElementById('daySlider');
 function dayChange(){
   const d=+daySlider.value, i=DAY_STOP[d], s=STOPS[i];
@@ -375,7 +477,7 @@ function dayChange(){
   document.getElementById('dayLabel').textContent=date.getDate()+'.'+(date.getMonth()+1);
   document.getElementById('dayWhere').innerHTML='<b>'+s.em+' '+s.n+'</b> • '+s.txt;
   showStop(i);
-  if(rmap) rmap.flyTo(GEO[i],i===3?9:8,{duration:1.2});
+  if(dayMap) dayMap.src=gsrc(STOPQ[i],11);
 }
 daySlider.addEventListener('input',dayChange);
 
