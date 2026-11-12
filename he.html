@@ -123,11 +123,25 @@ footer{border-top:1px solid var(--line);padding:24px 16px;color:var(--muted);fon
 .rbtn{display:block;margin:6px 0}
 #kVoiceNote{display:none;background:#fde2e2;border-radius:12px;padding:8px 12px;margin:8px 0;font-size:1rem}
 .pop{font-weight:800;color:#1f7a5a;min-height:1.6em}
+/* ---- money tab ---- */
+.notesgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:12px}
+.notecard{border-radius:12px;color:#fff;padding:14px 12px;display:flex;flex-direction:column;gap:4px;box-shadow:var(--shadow-sm);text-shadow:0 1px 2px rgba(0,0,0,.25)}
+.notecard b{font-size:1.15rem}
+.notecard span{font-size:.85rem;opacity:.95}
+.notecard.mini{border:0;cursor:pointer;font:inherit;align-items:center;text-align:center;transition:transform .12s}
+.notecard.mini:hover{transform:translateY(-2px)}
+.payrow{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.payrow .notecard{min-width:128px}
+.conv{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.conv label{display:flex;align-items:center;gap:6px;font-weight:700}
+.conv input{width:160px}
+.cnv-eq{font-weight:800;font-size:1.3rem;color:var(--accent)}
+#chgOpts{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
 </style>
 </head>
 <body>
 <header class="nav"><nav>
-<button id="kidsBtn" class="kidsbtn" type="button">🧒 מצב ילדים</button><a href="#journey">01 המסע</a><a href="#map">מפה</a><a href="#days">02 ימים</a><a href="#stay">03 לינה</a><a href="#budget">04 תקציב</a><a href="#prep">05 הכנות</a><a href="#links">06 קישורים</a><a href="index.html" class="langswitch" onclick="this.href='index.html'+location.hash">English</a>
+<button id="kidsBtn" class="kidsbtn" type="button">🧒 מצב ילדים</button><a href="#journey">01 המסע</a><a href="#map">מפה</a><a href="#days">02 ימים</a><a href="#stay">03 לינה</a><a href="#budget">04 תקציב</a><a href="#money">💰 כסף</a><a href="#prep">05 הכנות</a><a href="#links">06 קישורים</a><a href="index.html" class="langswitch" onclick="this.href='index.html'+location.hash">English</a>
 </nav></header>
 <main>
 
@@ -230,7 +244,7 @@ $4,757 במזומן לסוכנות בווייטנאם. כבודה בטיסות �
 <tr><th>אזור</th><th>תאריכים</th><th>לילות</th><th>מקום</th></tr>
 <tr><td>האנוי</td><td>17–19.11</td><td>2</td><td>Hanoi Pearl (עצמאית או בחבילה, לסגור)</td></tr>
 <tr><td>הא לונג ביי</td><td>19–20.11</td><td>1</td><td>Victorious Cruise (שודרג מ-Doris, פרטים לוודא)</td></tr>
-<tr><td>נין בין</td><td>20–23.11</td><td>3</td><td>לעדכן שם לינה מהצעת קובי</td></tr>
+<tr><td>נין בין</td><td>20–23.11</td><td>3</td><td>Coco Island Villa &amp; Hotel (מהצעת קובי המעודכנת; הכללה במחיר לוודא)</td></tr>
 <tr><td>פוקוק</td><td>23–30.11</td><td>7</td><td>Lahana Resort</td></tr>
 <tr><td>האנוי</td><td>30.11–1.12</td><td>1</td><td>Sunline</td></tr>
 </table>
@@ -252,6 +266,53 @@ $4,757 במזומן לסוכנות בווייטנאם. כבודה בטיסות �
 </div>
 </section>
 
+<section id="money">
+<div class="eyebrow">כסף / תרגול</div>
+<h2>הכסף של וייטנאם, בידיים</h2>
+<p class="lead">המטבע הוא הדונג הווייטנאמי (VND, ₫). ביומיום משתמשים בשטרות מ-10,000₫ ומעלה. נלמד את השטרות, נמיר לשקלים ונתרגל תשלום ועודף.</p>
+
+<div class="notice"><h3>חשבון מהיר שחוסך בשוק</h3>
+₪1 ≈ <b>8,000₫</b> · $1 ≈ <b>25,600₫</b> (12.11.2026, בקירוב - השער משתנה).<br>
+טיפ: מורידים 3 אפסים ומחלקים ב-8. 100.000₫ ≈ 100 ÷ 8 ≈ <b>₪12.5</b>. בווייטנאם כותבים מחירים עם נקודות: 45.000 זה 45,000 דונג.</div>
+
+<h3 style="margin-top:28px">השטרות שתפגשו</h3>
+<div class="notesgrid" id="notesGrid"></div>
+<p class="mapnote" style="margin-top:8px">כרטיסי תרגול בצבעי השטרות האמיתיים - איורים ללמידה, לא תמונות של השטרות עצמם. תמונות של השטרות האמיתיים: <a target="_blank" rel="noopener" href="https://sbv.gov.vn/en/vietnamese-currency">הבנק המרכזי של וייטנאם</a> · <a target="_blank" rel="noopener" href="https://he.wikipedia.org/wiki/%D7%93%D7%95%D7%A0%D7%92_%D7%95%D7%99%D7%99%D7%98%D7%A0%D7%90%D7%9E%D7%99">ויקיפדיה</a>.</p>
+
+<h3 style="margin-top:28px">ממיר</h3>
+<div class="card">
+<div class="conv">
+<label>₫ <input type="number" id="convVnd" placeholder="100000" inputmode="numeric"></label>
+<span class="cnv-eq">=</span>
+<label>₪ <input type="number" id="convIls" placeholder="12.40" step="0.01" inputmode="decimal"></label>
+</div>
+<p class="mapnote">השער בממיר: ₪1 = 8,069₫ (12.11.2026). בקירוב - בדקו שוב את השער לפני המרת כסף.</p>
+</div>
+
+<h3 style="margin-top:28px">משחק 1: שלמו סכום מדויק</h3>
+<div class="card">
+<p id="payPrompt" style="font-weight:700"></p>
+<div class="payrow" id="payNotes"></div>
+<p>הערימה שלכם: <b id="paySum">0₫</b> <span id="payIls" style="color:var(--muted)"></span></p>
+<div>
+<button class="kbtn" id="payCheck" type="button">לשלם!</button>
+<button class="kbtn alt" id="payUndo" type="button">להוריד שטר</button>
+<button class="kbtn opt" id="payNew" type="button">חשבון חדש</button>
+</div>
+<p class="pop" id="payMsg" aria-live="polite"></p>
+</div>
+
+<h3 style="margin-top:28px">משחק 2: כמה עודף?</h3>
+<div class="card">
+<p id="chgPrompt" style="font-weight:700"></p>
+<div id="chgOpts"></div>
+<p class="pop" id="chgMsg" aria-live="polite"></p>
+<button class="kbtn opt" id="chgNew" type="button">שאלה הבאה</button>
+</div>
+
+<p class="mapnote" style="margin-top:12px">מחירי התרגול הם דוגמאות בלבד - לא מחירים מובטחים בטיול.</p>
+</section>
+
 <section id="prep">
 <div class="eyebrow">05 / הכנות</div>
 <h2>הכנות</h2>
@@ -260,7 +321,7 @@ $4,757 במזומן לסוכנות בווייטנאם. כבודה בטיסות �
 <div class="card"><ul class="q">
 <li>כבודה בטיסות הפנים: מה מותר ומה העלות?</li>
 <li>Hanoi Pearl: הזמנה עצמאית או הכללה בחבילה?</li>
-<li>שם הלינה בנין בין והאם היא כלולה במחיר.</li>
+<li>הלינה בנין בין (Coco Island Villa &amp; Hotel): האם היא כלולה במחיר?</li>
 <li>אילו פעילויות בפוקוק ובנין בין באמת רוצים, ומה עלותן?</li>
 <li>מועד ואופן תשלום המזומן לסוכנות.</li>
 </ul></div>
@@ -327,7 +388,7 @@ $4,757 במזומן לסוכנות בווייטנאם. כבודה בטיסות �
 
 <footer>
 <p><b>איך נשמרים הסימונים והתקציב?</b> בדפדפן שלכם בלבד (localStorage), בלי שרת. כל מכשיר שומר בנפרד.</p>
-<p>עודכן 29.10.2026: שולבה הצעת קובי המעודכנת, מחיר $4,757 במזומן לסוכנות בווייטנאם, טיסות פנים כלולות, ושמות הלינות והקרוז. השינוי מ-24.10 משוקלל בתכנית. עודכן 6.11.2026: הקרוז שודרג מ-Doris ל-Victorious על ידי הספק; נוספו קישורי אינסטגרם רשמיים ומאומתים (Hanoi Pearl, האנג מואה). עודכן 11.11.2026: נוספו בלשונית הקישורים המלצות קובי להאנוי מהרשימה המשותפת שלו בגוגל מפות (24 מקומות עם קישורים). עודכן 12.11.2026: שדרוג נראות מלא; תצוגת גוגל מפות אמיתית חדשה של כל המלונות, שדות התעופה והמסעדות המומלצות של קובי, עם שיגורי הוראות הגעה. כל מי שמחזיק בקישור יכול לצפות. ללא פרטי דרכון או הזמנה. אין הזמנה, תשלום או שליחת הודעה מהאתר.</p>
+<p>עודכן 29.10.2026: שולבה הצעת קובי המעודכנת, מחיר $4,757 במזומן לסוכנות בווייטנאם, טיסות פנים כלולות, ושמות הלינות והקרוז. השינוי מ-24.10 משוקלל בתכנית. עודכן 6.11.2026: הקרוז שודרג מ-Doris ל-Victorious על ידי הספק; נוספו קישורי אינסטגרם רשמיים ומאומתים (Hanoi Pearl, האנג מואה). עודכן 11.11.2026: נוספו בלשונית הקישורים המלצות קובי להאנוי מהרשימה המשותפת שלו בגוגל מפות (24 מקומות עם קישורים). עודכן 12.11.2026: שדרוג נראות מלא; תצוגת גוגל מפות אמיתית חדשה של כל המלונות, שדות התעופה והמסעדות המומלצות של קובי, עם שיגורי הוראות הגעה. בהמשך, ב-12.11: שולמה לינת נין בין (Coco Island Villa &amp; Hotel, מהצעת קובי המעודכנת) ונוסף טאב כסף לתרגול - שטרות הדונג, ממיר ושני משחקי תשלום; מחירי התרגול הם דוגמאות, לא מחירים מובטחים בטיול. כל מי שמחזיק בקישור יכול לצפות. ללא פרטי דרכון או הזמנה. אין הזמנה, תשלום או שליחת הודעה מהאתר.</p>
 </footer>
 
 <div id="kids" role="dialog" aria-label="מצב ילדים" aria-modal="true">
@@ -418,7 +479,7 @@ const stopsG=document.getElementById('stops'), info=document.getElementById('sto
 const GPLACES=[
  {c:'hotel',e:'🏨',n:'Hanoi Pearl Hotel',w:'האנוי · הרובע העתיק',d:'17–19.11 · 2 לילות',t:'הזמנה עצמאית או בחבילה - לסגור',q:'Hanoi Pearl Hotel, 6 Bao Khanh Lane, Hoan Kiem, Hanoi'},
  {c:'hotel',e:'🛳️',n:'Victorious Cruise',w:'הא לונג ביי',d:'19–20.11 · לילה אחד',t:'שודרג מ-Doris - פרטי חדר והסעה לוודא',q:'Victorious Cruise, Ha Long Bay'},
- {c:'hotel',e:'🏨',n:'לינה בנין בין',w:'אזור טאם קוק, נין בין',d:'20–23.11 · 3 לילות',t:'שם לעדכון מקובי - המפה מציגה את אזור טאם קוק',q:'Tam Coc, Ninh Binh, Vietnam'},
+ {c:'hotel',e:'🏨',n:'Coco Island Villa & Hotel',w:'נין בין',d:'20–23.11 · 3 לילות',t:'מהצעת קובי המעודכנת - הכללה במחיר לוודא',q:'Coco Island Villa & Hotel, Ninh Binh, Vietnam'},
  {c:'hotel',e:'🏝️',n:'Lahana Resort',w:'פוקוק',d:'23–30.11 · 7 לילות',t:'בסיס אחד לכל השבוע',q:'Lahana Resort Phu Quoc'},
  {c:'hotel',e:'🏨',n:'Sunline Hotel',w:'האנוי',d:'30.11–1.12 · לילה אחד',t:'הלילה האחרון לפני הטיסה הביתה',q:'Sunline Hotel Hanoi'},
  {c:'airport',e:'✈️',n:'נתב"ג (TLV)',w:'תל אביב',d:'הלוך וחזור',t:'הטיסות הבינלאומיות',q:'Ben Gurion Airport, Israel'},
@@ -682,6 +743,68 @@ const saved = LS('vn_extras');
 if(saved && saved.length) saved.forEach(r=>addRow(r[0],r[1])); else { addRow('סדנת אורז (22.11)'); addRow('כרטיסי פעילויות בפוקוק'); addRow('תחבורה מקומית'); }
 document.getElementById('addRow').onclick=()=>addRow();
 recalc();
+
+/* ---- money tab ---- */
+const NOTES=[[10000,'#b8933d'],[20000,'#3f7fc4'],[50000,'#c64f60'],[100000,'#5e9c49'],[200000,'#a8622f'],[500000,'#4aa3bd']];
+const RATE=8069;
+const fmtV=n=>n.toLocaleString('de-DE')+'₫';
+const toIls=n=>'≈ ₪'+(n/RATE).toFixed(2);
+const ITEMS=[['קערת פו',45000],['ספרינג רולס טריים',30000],['שייק פירות',25000],['כריך באן מי',20000],['גלידה לכל המשפחה',60000],['מגנט מזכרת',35000],['נסיעת מונית בעיר',82000],['ארוחת צהריים משפחתית',260000]];
+const ng=document.getElementById('notesGrid');
+NOTES.forEach(([v,c])=>{
+  const d=document.createElement('div'); d.className='notecard'; d.style.background=c;
+  d.innerHTML='<b>'+fmtV(v)+'</b><span>'+toIls(v)+'</span>';
+  ng.appendChild(d);
+});
+const cV=document.getElementById('convVnd'), cI=document.getElementById('convIls');
+cV.addEventListener('input',()=>{const v=parseFloat(cV.value); cI.value=isNaN(v)?'':(v/RATE).toFixed(2);});
+cI.addEventListener('input',()=>{const v=parseFloat(cI.value); cV.value=isNaN(v)?'':Math.round(v*RATE);});
+let payBill=0, payStack=[];
+function renderPay(){
+  const s=payStack.reduce((a,b)=>a+b,0);
+  document.getElementById('paySum').textContent=fmtV(s);
+  document.getElementById('payIls').textContent=toIls(s);
+}
+function newBill(){
+  const it=ITEMS[Math.floor(Math.random()*ITEMS.length)];
+  payBill=it[1]; payStack=[];
+  document.getElementById('payPrompt').textContent='החשבון על '+it[0]+' הוא '+fmtV(payBill)+' (מחיר לדוגמה). בנו את הסכום המדויק בעזרת השטרות:';
+  document.getElementById('payMsg').textContent='';
+  renderPay();
+}
+const pn=document.getElementById('payNotes');
+NOTES.forEach(([v,c])=>{
+  const b=document.createElement('button'); b.type='button'; b.className='notecard mini'; b.style.background=c;
+  b.innerHTML='<b>'+fmtV(v)+'</b>';
+  b.onclick=()=>{payStack.push(v);renderPay();};
+  pn.appendChild(b);
+});
+document.getElementById('payUndo').onclick=()=>{payStack.pop();renderPay();};
+document.getElementById('payNew').onclick=newBill;
+document.getElementById('payCheck').onclick=()=>{
+  const s=payStack.reduce((a,b)=>a+b,0), m=document.getElementById('payMsg');
+  if(s===payBill){m.textContent='מדויק! '+fmtV(s)+' '+toIls(s)+'. כל הכבוד!';}
+  else if(s<payBill){m.textContent='חסרים '+fmtV(payBill-s)+' - הוסיפו עוד שטרות.';}
+  else{m.textContent='יותר מדי ב-'+fmtV(s-payBill)+' - המוכר היה צריך לתת לכם עודף. נסו סכום מדויק!';}
+};
+newBill();
+function newChg(){
+  const it=ITEMS[Math.floor(Math.random()*ITEMS.length)];
+  const big=NOTES.map(n=>n[0]).filter(v=>v>it[1]);
+  const paid=big.length?big[0]:500000;
+  const ans=paid-it[1];
+  document.getElementById('chgPrompt').textContent='שילמתם על '+it[0]+' ('+fmtV(it[1])+', מחיר לדוגמה) בשטר של '+fmtV(paid)+'. כמה עודף מקבלים?';
+  const opts=new Set([ans]);
+  while(opts.size<3){const d=ans+[-20000,-10000,-5000,5000,10000,20000][Math.floor(Math.random()*6)]; if(d>0) opts.add(d);}
+  const box=document.getElementById('chgOpts'); box.innerHTML='';
+  [...opts].sort(()=>Math.random()-.5).forEach(v=>{
+    const b=document.createElement('button'); b.type='button'; b.className='kbtn opt'; b.textContent=fmtV(v)+' ('+toIls(v)+')';
+    b.onclick=()=>{document.getElementById('chgMsg').textContent=(v===ans)?'נכון! העודף הוא '+fmtV(ans)+' '+toIls(ans)+'.':'לא בדיוק - ספרו שוב.';};
+    box.appendChild(b);
+  });
+  document.getElementById('chgMsg').textContent='';
+}
+document.getElementById('chgNew').onclick=newChg; newChg();
 </script>
 </body>
 </html>
