@@ -123,11 +123,25 @@ footer{border-top:1px solid var(--line);padding:24px 16px;color:var(--muted);fon
 .rbtn{display:block;margin:6px 0}
 #kVoiceNote{display:none;background:#fde2e2;border-radius:12px;padding:8px 12px;margin:8px 0;font-size:1rem}
 .pop{font-weight:800;color:#1f7a5a;min-height:1.6em}
+/* ---- money tab ---- */
+.notesgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:12px}
+.notecard{border-radius:12px;color:#fff;padding:14px 12px;display:flex;flex-direction:column;gap:4px;box-shadow:var(--shadow-sm);text-shadow:0 1px 2px rgba(0,0,0,.25)}
+.notecard b{font-size:1.15rem}
+.notecard span{font-size:.85rem;opacity:.95}
+.notecard.mini{border:0;cursor:pointer;font:inherit;align-items:center;text-align:center;transition:transform .12s}
+.notecard.mini:hover{transform:translateY(-2px)}
+.payrow{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.payrow .notecard{min-width:128px}
+.conv{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.conv label{display:flex;align-items:center;gap:6px;font-weight:700}
+.conv input{width:160px}
+.cnv-eq{font-weight:800;font-size:1.3rem;color:var(--accent)}
+#chgOpts{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
 </style>
 </head>
 <body>
 <header class="nav"><nav>
-<button id="kidsBtn" class="kidsbtn" type="button">🧒 Kids</button><a href="#journey">01 Journey</a><a href="#map">Map</a><a href="#days">02 Days</a><a href="#stay">03 Lodging</a><a href="#budget">04 Budget</a><a href="#prep">05 Prep</a><a href="#links">06 Links</a><a href="he.html" class="langswitch" onclick="this.href='he.html'+location.hash">עברית</a>
+<button id="kidsBtn" class="kidsbtn" type="button">🧒 Kids</button><a href="#journey">01 Journey</a><a href="#map">Map</a><a href="#days">02 Days</a><a href="#stay">03 Lodging</a><a href="#budget">04 Budget</a><a href="#money">💰 Money</a><a href="#prep">05 Prep</a><a href="#links">06 Links</a><a href="he.html" class="langswitch" onclick="this.href='he.html'+location.hash">עברית</a>
 </nav></header>
 <main>
 
@@ -230,7 +244,7 @@ $4,757 in cash to the agency in Vietnam. Baggage allowance on the domestic fligh
 <tr><th>Area</th><th>Dates</th><th>Nights</th><th>Place</th></tr>
 <tr><td>Hanoi</td><td>17–19.11</td><td>2</td><td>Hanoi Pearl (independent or in the package, to close)</td></tr>
 <tr><td>Ha Long Bay</td><td>19–20.11</td><td>1</td><td>Victorious Cruise (upgraded from Doris, details to confirm)</td></tr>
-<tr><td>Ninh Binh</td><td>20–23.11</td><td>3</td><td>Lodging name to update from Kobi's quote</td></tr>
+<tr><td>Ninh Binh</td><td>20–23.11</td><td>3</td><td>Coco Island Villa &amp; Hotel (from Kobi's updated quote; inclusion in price to confirm)</td></tr>
 <tr><td>Phu Quoc</td><td>23–30.11</td><td>7</td><td>Lahana Resort</td></tr>
 <tr><td>Hanoi</td><td>30.11–1.12</td><td>1</td><td>Sunline</td></tr>
 </table>
@@ -252,6 +266,53 @@ $4,757 in cash to the agency in Vietnam. Baggage allowance on the domestic fligh
 </div>
 </section>
 
+<section id="money">
+<div class="eyebrow">MONEY / PRACTICE</div>
+<h2>Vietnamese money, hands-on</h2>
+<p class="lead">The currency is the Vietnamese dong (VND, ₫). Everyday money is paperless-small: notes from 10,000₫ up. Learn the notes, convert to shekels, and practice paying and getting change.</p>
+
+<div class="notice"><h3>Quick math that saves you at the market</h3>
+₪1 ≈ <b>8,000₫</b> · $1 ≈ <b>25,600₫</b> (12.11.2026, approximate - the rate moves).<br>
+Trick: drop 3 zeros and divide by 8. 100.000₫ ≈ 100 ÷ 8 ≈ <b>₪12.5</b>. In Vietnam prices are written with dots: 45.000 means 45,000₫.</div>
+
+<h3 style="margin-top:28px">The notes you will meet</h3>
+<div class="notesgrid" id="notesGrid"></div>
+<p class="mapnote" style="margin-top:8px">Practice cards in the real note colors - illustrations for learning, not photos of the actual banknotes. Photos of the real notes: <a target="_blank" rel="noopener" href="https://sbv.gov.vn/en/vietnamese-currency">State Bank of Vietnam</a> · <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Vietnamese_%C4%91%E1%BB%93ng">Wikipedia</a>.</p>
+
+<h3 style="margin-top:28px">Converter</h3>
+<div class="card">
+<div class="conv">
+<label>₫ <input type="number" id="convVnd" placeholder="100000" inputmode="numeric"></label>
+<span class="cnv-eq">=</span>
+<label>₪ <input type="number" id="convIls" placeholder="12.40" step="0.01" inputmode="decimal"></label>
+</div>
+<p class="mapnote">Rate used: ₪1 = 8,069₫ (12.11.2026). Approximate - check the rate again before exchanging money.</p>
+</div>
+
+<h3 style="margin-top:28px">Game 1: Pay the exact amount</h3>
+<div class="card">
+<p id="payPrompt" style="font-weight:700"></p>
+<div class="payrow" id="payNotes"></div>
+<p>Your stack: <b id="paySum">0₫</b> <span id="payIls" style="color:var(--muted)"></span></p>
+<div>
+<button class="kbtn" id="payCheck" type="button">Pay!</button>
+<button class="kbtn alt" id="payUndo" type="button">Undo note</button>
+<button class="kbtn opt" id="payNew" type="button">New bill</button>
+</div>
+<p class="pop" id="payMsg" aria-live="polite"></p>
+</div>
+
+<h3 style="margin-top:28px">Game 2: How much change?</h3>
+<div class="card">
+<p id="chgPrompt" style="font-weight:700"></p>
+<div id="chgOpts"></div>
+<p class="pop" id="chgMsg" aria-live="polite"></p>
+<button class="kbtn opt" id="chgNew" type="button">Next question</button>
+</div>
+
+<p class="mapnote" style="margin-top:12px">Practice prices are examples only - not guaranteed trip prices.</p>
+</section>
+
 <section id="prep">
 <div class="eyebrow">05 / PREP</div>
 <h2>Prep</h2>
@@ -260,7 +321,7 @@ $4,757 in cash to the agency in Vietnam. Baggage allowance on the domestic fligh
 <div class="card"><ul class="q">
 <li>Baggage on the domestic flights: what's allowed and what does it cost?</li>
 <li>Hanoi Pearl: independent booking or package inclusion?</li>
-<li>The Ninh Binh lodging name and whether it's included in the price.</li>
+<li>The Ninh Binh lodging (Coco Island Villa &amp; Hotel): is it included in the price?</li>
 <li>Which activities in Phu Quoc and Ninh Binh we actually want, and what they cost?</li>
 <li>When and how to pay the cash to the agency.</li>
 </ul></div>
@@ -327,7 +388,7 @@ $4,757 in cash to the agency in Vietnam. Baggage allowance on the domestic fligh
 
 <footer>
 <p><b>How are checkmarks and the budget saved?</b> In your browser only (localStorage), no server. Each device saves separately.</p>
-<p>Updated 29.10.2026: Kobi's updated quote incorporated - price $4,757 in cash to the agency in Vietnam, domestic flights included, and the lodging and cruise names. The 24.10 change is reflected in the plan. Updated 6.11.2026: the cruise was upgraded from Doris to Victorious by the supplier; verified official Instagram links added (Hanoi Pearl, Hang M&uacute;a). Updated 11.11.2026: Kobi&#39;s Hanoi recommendations added from his shared Google Maps list (24 places with links) under Links. Updated 12.11.2026: full visual refresh; a new real Google Maps view of all the hotels, airports and Kobi&#39;s restaurant picks, with directions launches. Anyone with the link can view. No passport or booking details. No booking, payment or messaging from the site.</p>
+<p>Updated 29.10.2026: Kobi's updated quote incorporated - price $4,757 in cash to the agency in Vietnam, domestic flights included, and the lodging and cruise names. The 24.10 change is reflected in the plan. Updated 6.11.2026: the cruise was upgraded from Doris to Victorious by the supplier; verified official Instagram links added (Hanoi Pearl, Hang M&uacute;a). Updated 11.11.2026: Kobi&#39;s Hanoi recommendations added from his shared Google Maps list (24 places with links) under Links. Updated 12.11.2026: full visual refresh; a new real Google Maps view of all the hotels, airports and Kobi&#39;s restaurant picks, with directions launches. Then, on 12.11: the Ninh Binh lodging was named (Coco Island Villa &amp; Hotel, from Kobi&#39;s updated quote) and a Money practice tab was added - dong notes, a converter and two payment games; practice prices are examples, not guaranteed trip prices. Anyone with the link can view. No passport or booking details. No booking, payment or messaging from the site.</p>
 </footer>
 
 <div id="kids" role="dialog" aria-label="מצב ילדים" aria-modal="true" dir="rtl">
@@ -418,7 +479,7 @@ const stopsG=document.getElementById('stops'), info=document.getElementById('sto
 const GPLACES=[
  {c:'hotel',e:'🏨',n:'Hanoi Pearl Hotel',w:'Hanoi · Old Quarter',d:'17–19.11 · 2 nights',t:'Independent booking or package - to close',q:'Hanoi Pearl Hotel, 6 Bao Khanh Lane, Hoan Kiem, Hanoi'},
  {c:'hotel',e:'🛳️',n:'Victorious Cruise',w:'Ha Long Bay',d:'19–20.11 · 1 night',t:'Upgraded from Doris - room and transfer details to confirm',q:'Victorious Cruise, Ha Long Bay'},
- {c:'hotel',e:'🏨',n:'Ninh Binh lodging',w:'Tam Coc area, Ninh Binh',d:'20–23.11 · 3 nights',t:'Name to update from Kobi - the map shows the Tam Coc area',q:'Tam Coc, Ninh Binh, Vietnam'},
+ {c:'hotel',e:'🏨',n:'Coco Island Villa & Hotel',w:'Ninh Binh',d:'20–23.11 · 3 nights',t:"From Kobi's updated quote - inclusion in price to confirm",q:'Coco Island Villa & Hotel, Ninh Binh, Vietnam'},
  {c:'hotel',e:'🏝️',n:'Lahana Resort',w:'Phu Quoc',d:'23–30.11 · 7 nights',t:'One base for the whole week',q:'Lahana Resort Phu Quoc'},
  {c:'hotel',e:'🏨',n:'Sunline Hotel',w:'Hanoi',d:'30.11–1.12 · 1 night',t:'The final night before the flight home',q:'Sunline Hotel Hanoi'},
  {c:'airport',e:'✈️',n:'Ben Gurion Airport (TLV)',w:'Tel Aviv',d:'Out and back',t:'The international flights',q:'Ben Gurion Airport, Israel'},
@@ -682,6 +743,68 @@ const saved = LS('vn_extras');
 if(saved && saved.length) saved.forEach(r=>addRow(r[0],r[1])); else { addRow('Rice workshop (22.11)'); addRow('Phu Quoc activity tickets'); addRow('Local transport'); }
 document.getElementById('addRow').onclick=()=>addRow();
 recalc();
+
+/* ---- money tab ---- */
+const NOTES=[[10000,'#b8933d'],[20000,'#3f7fc4'],[50000,'#c64f60'],[100000,'#5e9c49'],[200000,'#a8622f'],[500000,'#4aa3bd']];
+const RATE=8069;
+const fmtV=n=>n.toLocaleString('de-DE')+'₫';
+const toIls=n=>'≈ ₪'+(n/RATE).toFixed(2);
+const ITEMS=[['a bowl of pho',45000],['fresh spring rolls',30000],['a fruit smoothie',25000],['a banh mi sandwich',20000],['ice cream for the family',60000],['a souvenir magnet',35000],['a taxi ride across town',82000],['family lunch',260000]];
+const ng=document.getElementById('notesGrid');
+NOTES.forEach(([v,c])=>{
+  const d=document.createElement('div'); d.className='notecard'; d.style.background=c;
+  d.innerHTML='<b>'+fmtV(v)+'</b><span>'+toIls(v)+'</span>';
+  ng.appendChild(d);
+});
+const cV=document.getElementById('convVnd'), cI=document.getElementById('convIls');
+cV.addEventListener('input',()=>{const v=parseFloat(cV.value); cI.value=isNaN(v)?'':(v/RATE).toFixed(2);});
+cI.addEventListener('input',()=>{const v=parseFloat(cI.value); cV.value=isNaN(v)?'':Math.round(v*RATE);});
+let payBill=0, payStack=[];
+function renderPay(){
+  const s=payStack.reduce((a,b)=>a+b,0);
+  document.getElementById('paySum').textContent=fmtV(s);
+  document.getElementById('payIls').textContent=toIls(s);
+}
+function newBill(){
+  const it=ITEMS[Math.floor(Math.random()*ITEMS.length)];
+  payBill=it[1]; payStack=[];
+  document.getElementById('payPrompt').textContent='The bill for '+it[0]+' is '+fmtV(payBill)+' (example price). Build the exact amount with the notes:';
+  document.getElementById('payMsg').textContent='';
+  renderPay();
+}
+const pn=document.getElementById('payNotes');
+NOTES.forEach(([v,c])=>{
+  const b=document.createElement('button'); b.type='button'; b.className='notecard mini'; b.style.background=c;
+  b.innerHTML='<b>'+fmtV(v)+'</b>';
+  b.onclick=()=>{payStack.push(v);renderPay();};
+  pn.appendChild(b);
+});
+document.getElementById('payUndo').onclick=()=>{payStack.pop();renderPay();};
+document.getElementById('payNew').onclick=newBill;
+document.getElementById('payCheck').onclick=()=>{
+  const s=payStack.reduce((a,b)=>a+b,0), m=document.getElementById('payMsg');
+  if(s===payBill){m.textContent='Exact! '+fmtV(s)+' '+toIls(s)+'. Well done!';}
+  else if(s<payBill){m.textContent='Missing '+fmtV(payBill-s)+' - add more notes.';}
+  else{m.textContent='Too much by '+fmtV(s-payBill)+' - the seller would owe you change. Try for exact!';}
+};
+newBill();
+function newChg(){
+  const it=ITEMS[Math.floor(Math.random()*ITEMS.length)];
+  const big=NOTES.map(n=>n[0]).filter(v=>v>it[1]);
+  const paid=big.length?big[0]:500000;
+  const ans=paid-it[1];
+  document.getElementById('chgPrompt').textContent='You pay for '+it[0]+' ('+fmtV(it[1])+', example price) with '+fmtV(paid)+'. How much change do you get?';
+  const opts=new Set([ans]);
+  while(opts.size<3){const d=ans+[-20000,-10000,-5000,5000,10000,20000][Math.floor(Math.random()*6)]; if(d>0) opts.add(d);}
+  const box=document.getElementById('chgOpts'); box.innerHTML='';
+  [...opts].sort(()=>Math.random()-.5).forEach(v=>{
+    const b=document.createElement('button'); b.type='button'; b.className='kbtn opt'; b.textContent=fmtV(v)+' ('+toIls(v)+')';
+    b.onclick=()=>{document.getElementById('chgMsg').textContent=(v===ans)?'Correct! The change is '+fmtV(ans)+' '+toIls(ans)+'.':'Not quite - count again.';};
+    box.appendChild(b);
+  });
+  document.getElementById('chgMsg').textContent='';
+}
+document.getElementById('chgNew').onclick=newChg; newChg();
 </script>
 </body>
 </html>
