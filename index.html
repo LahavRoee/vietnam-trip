@@ -183,7 +183,7 @@ $4,757 in cash to the agency in Vietnam. Baggage allowance on the domestic fligh
 <section id="map">
 <div class="eyebrow">MAP / GOOGLE MAPS</div>
 <h2>Everything on a real Google Map</h2>
-<p class="lead">All our hotels, the airports, and Kobi's recommended restaurants and cafés. Pick a place to see it on a real Google Map - or launch directions straight from here.</p>
+<p class="lead">All our hotels, the airports, Kobi's recommended restaurants and cafés, and clinics in our trip areas. Pick a place to see it on a real Google Map - or launch directions straight from here.</p>
 <div class="mapx">
 <div class="card mapx-side">
 <div class="chips" id="placeChips">
@@ -191,6 +191,7 @@ $4,757 in cash to the agency in Vietnam. Baggage allowance on the domestic fligh
 <button type="button" class="chip" data-cat="hotel">🏨 Our hotels</button>
 <button type="button" class="chip" data-cat="airport">✈️ Airports</button>
 <button type="button" class="chip" data-cat="food">🍜 Restaurants &amp; cafés</button>
+<button type="button" class="chip" data-cat="clinic">🏥 Clinics</button>
 </div>
 <div id="placeList" class="placelist"></div>
 </div>
@@ -201,7 +202,7 @@ $4,757 in cash to the agency in Vietnam. Baggage allowance on the domestic fligh
 <a id="gmDir" class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;destination=Hanoi%20Pearl%20Hotel%2C%206%20Bao%20Khanh%20Lane%2C%20Hoan%20Kiem%2C%20Hanoi">🧭 Directions</a>
 <a id="gmOpen" class="btn ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Hanoi%20Pearl%20Hotel%2C%206%20Bao%20Khanh%20Lane%2C%20Hoan%20Kiem%2C%20Hanoi">Open in Google Maps</a>
 </div>
-<p class="mapnote">A real Google Map, loaded straight from Google - drag and zoom inside it. Directions open Google Maps from your current location. The restaurants are Kobi's recommendations (11.11) - nothing is booked.</p>
+<p class="mapnote">A real Google Map, loaded straight from Google - drag and zoom inside it. Directions open Google Maps from your current location. The restaurants are Kobi's recommendations (11.11) - nothing is booked. Clinics added 19.11 - call ahead before visiting.</p>
 </div>
 </div>
 <p class="mapnote" style="margin-top:10px">🗺️ All 24 of Kobi's Hanoi places together on one map: <a target="_blank" rel="noopener" href="https://maps.app.goo.gl/C1dY9wWbZMmpT65P9">his shared Google Maps list</a>.</p>
@@ -497,11 +498,17 @@ const GPLACES=[
  {c:'food',e:'🍜',n:'Ding Doong Restaurant',w:'Hanoi · Old Quarter',d:"Kobi's pick · rating 4.9",t:'Vietnamese restaurant',q:'Ding Doong Restaurant Hanoi'},
  {c:'food',e:'🍜',n:'MIAs restaurant',w:'Hanoi · Old Quarter',d:"Kobi's pick · rating 4.9",t:'Vietnamese restaurant',q:'MIAs restaurant, Hanoi'},
  {c:'food',e:'🍜',n:'Red Bean Ma May',w:'Hanoi · Old Quarter',d:"Kobi's pick · rating 4.9",t:'Vietnamese restaurant',q:'Red Bean Ma May, Hanoi'},
- {c:'food',e:'🍺',n:'Beer Street Seafood',w:'Hanoi · Ta Hien pub street',d:"Kobi's pick · rating 4.3",t:'Kobi warns to beware of people offering prostitution and drugs',q:'Beer Street Seafood, Hanoi'}
+ {c:'food',e:'🍺',n:'Beer Street Seafood',w:'Hanoi · Ta Hien pub street',d:"Kobi's pick · rating 4.3",t:'Kobi warns to beware of people offering prostitution and drugs',q:'Beer Street Seafood, Hanoi'},
+ {c:'clinic',e:'🏥',n:'Raffles Medical International Clinic',w:'Hanoi · 51 Xuan Dieu, Tay Ho',d:'+84 24 3676 2222',t:'',q:'Raffles Medical International Clinic, 51 Xuan Dieu, Tay Ho, Hanoi',pid:'ChIJ28kG7viqNTER8TAeJ28rLOY'},
+ {c:'clinic',e:'🏥',n:'Doctor4U Family Clinic',w:'Hanoi · 71 Van Phuc, Ba Dinh',d:'+84 24 3221 2212',t:'',q:'Doctor4U Family Clinic, 71 Van Phuc, Ba Dinh, Hanoi',pid:'ChIJq6r6U22rNTERz9tXQY7vJT0'},
+ {c:'clinic',e:'🏥',n:'Family Medical Practice Hanoi',w:'Hanoi · 298I Kim Ma, Ba Dinh',d:'International clinic',t:'',q:'Family Medical Practice, 298I Kim Ma, Ba Dinh, Hanoi',pid:'ChIJsaBpQHOrNTERj3i2DDLEczA'},
+ {c:'clinic',e:'🏥',n:'Family Doctor Clinic (Hang Bai)',w:'Hanoi · 50C Hang Bai, Hoan Kiem',d:'',t:'',q:'Phong kham bac si gia dinh, 50C Hang Bai, Hoan Kiem, Hanoi',pid:'ChIJ568bRxCrNTERgnD-5K4UWuY'},
+ {c:'clinic',e:'🏥',n:'Dr.Care Family Doctor Clinic',w:'Hanoi · Kim Van Kim Lu, Hoang Mai',d:'',t:'',q:'Dr.Care Family Doctor Clinic, Kim Van, Hoang Mai, Hanoi',pid:'ChIJmSDmyCGtNTERcW8mWlvntho'},
+ {c:'clinic',e:'🏥',n:'NBI Dental',w:'Ninh Binh · 68 Tue Tinh',d:'0966 663 535',t:'~5 km from Coco Island Villa',q:'Nha Khoa NBi, 68 Tue Tinh, Hoa Lu, Ninh Binh',pid:'ChIJW3cpaVV3NjERT4fqImJWPBw'}
 ];
 const gsrc=(q,z)=>'https://www.google.com/maps?q='+encodeURIComponent(q)+'&z='+(z||16)+'&output=embed';
-const gdir=q=>'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(q);
-const gopen=q=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q);
+const gdir=(q,pid)=>'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(q)+(pid?'&destination_place_id='+pid:'');
+const gopen=(q,pid)=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q)+(pid?'&query_place_id='+pid:'');
 const gmap=document.getElementById('gmap'), gInfo=document.getElementById('placeInfo'),
       gDir=document.getElementById('gmDir'), gOpen=document.getElementById('gmOpen'),
       gList=document.getElementById('placeList');
@@ -520,7 +527,7 @@ function gSelect(i){
   gSel=i; const p=GPLACES[i];
   gInfo.innerHTML='<b>'+p.e+' '+p.n+'</b><span>'+p.w+(p.d?' · '+p.d:'')+'</span>';
   gmap.src=gsrc(p.q);
-  gDir.href=gdir(p.q); gOpen.href=gopen(p.q);
+  gDir.href=gdir(p.q,p.pid); gOpen.href=gopen(p.q,p.pid);
   gRenderList();
 }
 document.querySelectorAll('#placeChips .chip').forEach(ch=>{
