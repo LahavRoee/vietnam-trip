@@ -183,7 +183,7 @@ $4,757 במזומן לסוכנות בווייטנאם. כבודה בטיסות �
 <section id="map">
 <div class="eyebrow">מפה / גוגל מפות</div>
 <h2>הכל על מפת גוגל אמיתית</h2>
-<p class="lead">כל המלונות שלנו, שדות התעופה, והמסעדות ובתי הקפה המומלצים של קובי. בחרו מקום כדי לראות אותו על מפת גוגל אמיתית - או שיגרו הוראות הגעה ישירות מכאן.</p>
+<p class="lead">כל המלונות שלנו, שדות התעופה, המסעדות ובתי הקפה המומלצים של קובי, ומרפאות באזורי הטיול. בחרו מקום כדי לראות אותו על מפת גוגל אמיתית - או שיגרו הוראות הגעה ישירות מכאן.</p>
 <div class="mapx">
 <div class="card mapx-side">
 <div class="chips" id="placeChips">
@@ -191,6 +191,7 @@ $4,757 במזומן לסוכנות בווייטנאם. כבודה בטיסות �
 <button type="button" class="chip" data-cat="hotel">🏨 המלונות שלנו</button>
 <button type="button" class="chip" data-cat="airport">✈️ שדות תעופה</button>
 <button type="button" class="chip" data-cat="food">🍜 מסעדות ובתי קפה</button>
+<button type="button" class="chip" data-cat="clinic">🏥 מרפאות</button>
 </div>
 <div id="placeList" class="placelist"></div>
 </div>
@@ -201,7 +202,7 @@ $4,757 במזומן לסוכנות בווייטנאם. כבודה בטיסות �
 <a id="gmDir" class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;destination=Hanoi%20Pearl%20Hotel%2C%206%20Bao%20Khanh%20Lane%2C%20Hoan%20Kiem%2C%20Hanoi">🧭 הוראות הגעה</a>
 <a id="gmOpen" class="btn ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Hanoi%20Pearl%20Hotel%2C%206%20Bao%20Khanh%20Lane%2C%20Hoan%20Kiem%2C%20Hanoi">פתיחה בגוגל מפות</a>
 </div>
-<p class="mapnote">מפת גוגל אמיתית, נטענת ישירות מגוגל - אפשר לגרור ולהתקרב בתוכה. הוראות ההגעה נפתחות בגוגל מפות מהמיקום הנוכחי שלכם. המסעדות הן ההמלצות של קובי (11.11) - שום דבר לא הוזמן.</p>
+<p class="mapnote">מפת גוגל אמיתית, נטענת ישירות מגוגל - אפשר לגרור ולהתקרב בתוכה. הוראות ההגעה נפתחות בגוגל מפות מהמיקום הנוכחי שלכם. המסעדות הן ההמלצות של קובי (11.11) - שום דבר לא הוזמן. המרפאות נוספו 19.11 - לתאם טלפונית לפני ההגעה.</p>
 </div>
 </div>
 <p class="mapnote" style="margin-top:10px">🗺️ כל 24 המקומות של קובי בהאנוי יחד על מפה אחת: <a target="_blank" rel="noopener" href="https://maps.app.goo.gl/C1dY9wWbZMmpT65P9">הרשימה המשותפת שלו בגוגל מפות</a>.</p>
@@ -497,11 +498,17 @@ const GPLACES=[
  {c:'food',e:'🍜',n:'Ding Doong Restaurant',w:'האנוי · הרובע העתיק',d:'המלצת קובי · דירוג 4.9',t:'מסעדה וייטנאמית',q:'Ding Doong Restaurant Hanoi'},
  {c:'food',e:'🍜',n:'MIAs restaurant',w:'האנוי · הרובע העתיק',d:'המלצת קובי · דירוג 4.9',t:'מסעדה וייטנאמית',q:'MIAs restaurant, Hanoi'},
  {c:'food',e:'🍜',n:'Red Bean Ma May',w:'האנוי · הרובע העתיק',d:'המלצת קובי · דירוג 4.9',t:'מסעדה וייטנאמית',q:'Red Bean Ma May, Hanoi'},
- {c:'food',e:'🍺',n:'Beer Street Seafood',w:'האנוי · רחוב הפאבים Ta Hien',d:'המלצת קובי · דירוג 4.3',t:'קובי מזהיר להיזהר מאנשים המציעים זנות וסמים',q:'Beer Street Seafood, Hanoi'}
+ {c:'food',e:'🍺',n:'Beer Street Seafood',w:'האנוי · רחוב הפאבים Ta Hien',d:'המלצת קובי · דירוג 4.3',t:'קובי מזהיר להיזהר מאנשים המציעים זנות וסמים',q:'Beer Street Seafood, Hanoi'},
+ {c:'clinic',e:'🏥',n:'Raffles Medical International Clinic',w:'האנוי · 51 Xuan Dieu, Tay Ho',d:'+84 24 3676 2222',t:'',q:'Raffles Medical International Clinic, 51 Xuan Dieu, Tay Ho, Hanoi',pid:'ChIJ28kG7viqNTER8TAeJ28rLOY'},
+ {c:'clinic',e:'🏥',n:'Doctor4U Family Clinic',w:'האנוי · 71 Van Phuc, Ba Dinh',d:'+84 24 3221 2212',t:'',q:'Doctor4U Family Clinic, 71 Van Phuc, Ba Dinh, Hanoi',pid:'ChIJq6r6U22rNTERz9tXQY7vJT0'},
+ {c:'clinic',e:'🏥',n:'Family Medical Practice Hanoi',w:'האנוי · 298I Kim Ma, Ba Dinh',d:'מרפאה בינלאומית',t:'',q:'Family Medical Practice, 298I Kim Ma, Ba Dinh, Hanoi',pid:'ChIJsaBpQHOrNTERj3i2DDLEczA'},
+ {c:'clinic',e:'🏥',n:'מרפאת רופא משפחה (Hang Bai)',w:'האנוי · 50C Hang Bai, Hoan Kiem',d:'',t:'',q:'Phong kham bac si gia dinh, 50C Hang Bai, Hoan Kiem, Hanoi',pid:'ChIJ568bRxCrNTERgnD-5K4UWuY'},
+ {c:'clinic',e:'🏥',n:'Dr.Care Family Doctor Clinic',w:'האנוי · Kim Van Kim Lu, Hoang Mai',d:'',t:'',q:'Dr.Care Family Doctor Clinic, Kim Van, Hoang Mai, Hanoi',pid:'ChIJmSDmyCGtNTERcW8mWlvntho'},
+ {c:'clinic',e:'🏥',n:'NBI Dental',w:'נין בין · 68 Tue Tinh',d:'0966 663 535',t:'כ־5 ק״מ מ-Coco Island Villa',q:'Nha Khoa NBi, 68 Tue Tinh, Hoa Lu, Ninh Binh',pid:'ChIJW3cpaVV3NjERT4fqImJWPBw'}
 ];
 const gsrc=(q,z)=>'https://www.google.com/maps?q='+encodeURIComponent(q)+'&z='+(z||16)+'&output=embed';
-const gdir=q=>'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(q);
-const gopen=q=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q);
+const gdir=(q,pid)=>'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(q)+(pid?'&destination_place_id='+pid:'');
+const gopen=(q,pid)=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q)+(pid?'&query_place_id='+pid:'');
 const gmap=document.getElementById('gmap'), gInfo=document.getElementById('placeInfo'),
       gDir=document.getElementById('gmDir'), gOpen=document.getElementById('gmOpen'),
       gList=document.getElementById('placeList');
@@ -520,7 +527,7 @@ function gSelect(i){
   gSel=i; const p=GPLACES[i];
   gInfo.innerHTML='<b>'+p.e+' '+p.n+'</b><span>'+p.w+(p.d?' · '+p.d:'')+'</span>';
   gmap.src=gsrc(p.q);
-  gDir.href=gdir(p.q); gOpen.href=gopen(p.q);
+  gDir.href=gdir(p.q,p.pid); gOpen.href=gopen(p.q,p.pid);
   gRenderList();
 }
 document.querySelectorAll('#placeChips .chip').forEach(ch=>{
